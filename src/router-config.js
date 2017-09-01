@@ -13,8 +13,9 @@ let router = new VueRouter({
             path: '/',
             component: Home
         },
-        { 
+        {
             path: '/pr/video',
+            alias: '/pr',
             component: Video
         },
         { 
