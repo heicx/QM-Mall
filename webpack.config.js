@@ -4,7 +4,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const extractSass = new ExtractTextPlugin({
     filename: "[name].[contenthash].css",
-    disable: process.env.NODE_ENV === "development"
+    // disable: process.env.NODE_ENV === "development"
 });
 
 module.exports = {
@@ -26,9 +26,11 @@ module.exports = {
             // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
             // the "scss" and "sass" values for the lang attribute to the right configs here.
             // other preprocessors should work out of the box, no loader config like this necessary.
-            'scss': 'vue-style-loader!css-loader!sass-loader',
-            'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
-          }
+            'scss': 'vue-style-loader!css-loader!postcss-loader!sass-loader',
+            'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax',
+            // 'postcss': 'style-loader!css-loader!postcss-loader!sass-loader'
+          },
+          // postcss: [require('autoprefixer')({ browsers: ['last 10 versions', '> 1%'] })]
           // other vue-loader options go here
         }
       },
@@ -45,15 +47,17 @@ module.exports = {
         }
       },
       {
-        test: /\.scss$/,
+        test: /\.scss|.css$/,
         use: extractSass.extract({
             use: [{
                 loader: "css-loader"
             }, {
                 loader: "sass-loader"
+            }, {
+                loader: 'postcss-loader'
             }],
             // use style-loader in development
-            fallback: "style-loader"
+            // fallback: "style-loader"
         })
       }
     ]

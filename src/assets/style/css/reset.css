@@ -17,6 +17,16 @@ time, mark, audio, video {
     padding: 0;
 }
 
+a {
+    cursor: pointer;
+    transition: all .15s ease-out;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #02bbda;
+}
+
 /* ie6 7 8(q) bug 显示为行内表现 */
 iframe {
     display: block;

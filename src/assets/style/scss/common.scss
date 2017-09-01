@@ -1,6 +1,174 @@
 @import '../css/reset.css';
 @import '../css/normalize.css';
 
+$fontSize: 14px;
+
 body {
 	background: #ededed;
+}
+
+/* 
+* Header
+*/
+.app-wrap .header-topbar {
+	width: 100%;
+	background: #f2f2f2;	
+}
+
+.header-topbar .container {
+	width: 1220px;
+	height: 80px;
+	margin: 0 auto;
+	.topbar-logo {
+		float: left;
+		background: url(../../images/logo.png) no-repeat 50%;
+		background-size: cover;
+		width: 160px;
+		height: 30px;
+		margin-top: 25px;
+	}
+	.topbar-info {
+		float: right;
+		line-height: 80px;
+		font-size: $fontSize;
+		color: #666;
+		.sep {
+			margin: 0 10px;
+			opacity: 0.6;
+		}
+	}
+}
+
+/*
+* 二级导航
+*/
+.app-wrap .header-nav {
+	width: 100%;
+	background: #1a1a1a;
+	background-image: -webkit-linear-gradient(#000,#121212);
+	background-image: linear-gradient(#000,#121212);
+}
+
+.header-nav .container {
+	width: 1220px;
+	height: 70px;
+	margin: 0 auto;
+	line-height: 70px;
+	color: #fff;
+	.nav-series {
+		float: left;
+		font-size: 24px;
+		margin-left: 35px;
+		cursor: default;
+	}
+	.nav-list {
+		float: left;
+		font-size: 14px;
+		height: 70px;
+		margin-left: 40px;
+		li {
+			float: left;
+			margin: 0 30px;
+			a {
+				color: #fff;
+				&:hover {
+					color: #02bbda;
+				}
+			}
+		}
+	}
+	.nav-btn {
+		float: right;
+    color: #fff;
+    background: #10afca;
+    width: 120px;
+    height: 40px;
+    line-height: 1;
+    border: 1px solid #6299b3;
+    border-radius: 5px;
+		font-size: 14px;
+		margin-top: 15px;
+		&:hover {
+			transition: all .15s ease-out;
+			background: #139fb7;
+			border: 1px solid #648ea2;
+		}
+	}
+}
+
+/*
+* Footer
+*/
+.app-wrap .footer {
+	width: 100%;
+	background: #f2f2f2;
+}
+
+.footer .container {
+	width: 1220px;
+	padding: 100px 0 30px;
+	margin: 0 auto;
+}
+
+.footer {
+	.footer-nav {
+		float: left;
+		margin-bottom: 30px;
+		li.nav-group {
+			float: left;
+			width: 160px;
+		}
+		h3 {
+			cursor: default;
+			font-size: $fontSize;
+			color: #02bbda;
+		}
+		.items {
+			font-size: $fontSize;
+			color: #666;
+			margin-top: 14px;
+			li {
+				padding: 6px 0;
+			}
+		}
+	}
+	.footer-service {
+		float: right;
+		.tel {
+			color: #646464;
+			font-size: 34px;
+			margin-bottom: 4px;
+			a {
+				color: #646464;
+			}
+		}
+		.time {
+			font-size: $fontSize;
+			color: #b2b2b2;
+		}
+	}
+	.copyright {
+		clear: both;
+		padding-top: 30px;
+		border-top: 1px solid #e3e3e3;
+		.company,
+		.privacy {
+			font-size: $fontSize - 2px;
+			float: left;
+		}
+		.company {
+			color: #757575;
+		}
+		.privacy {
+			li {
+				float: left;
+				border-left: 1px solid #ccc;
+				margin-left: 10px;
+				padding-left: 10px;
+				a {
+					color: #02bbda;
+				}
+			}
+		}
+	}
 }

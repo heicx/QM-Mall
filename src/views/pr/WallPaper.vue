@@ -1,7 +1,7 @@
 <template>
-    <div class="not-found">
-        404 not found
-    </div>
+	<div>
+    WallPaper
+	</div>
 </template>
 
 <script>
@@ -17,10 +17,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.app-wrap .not-found {
-    min-height: 800px;
-    line-height: 800px;
-    text-align: center;
-    font-size: 32px;
-}
 </style>
