@@ -11,25 +11,25 @@
         <ul class="video-items">
             <li>
                 <a href="">
-                    <img src="" alt="">
+                    <img src="http://static.smartisanos.cn/pr/img/video/video_searcher_254e93c084.png" alt="">
                     <span>视频1</span>
                 </a>
             </li>
             <li>
                 <a href="">
-                    <img src="" alt="">
+                    <img src="http://static.smartisanos.cn/pr/img/video/video_searcher_254e93c084.png" alt="">
                     <span>视频1</span>
                 </a>
             </li>
             <li>
                 <a href="">
-                    <img src="" alt="">
+                    <img src="http://static.smartisanos.cn/pr/img/video/video_searcher_254e93c084.png" alt="">
                     <span>视频1</span>
                 </a>
             </li>
             <li>
                 <a href="">
-                    <img src="" alt="">
+                    <img src="http://static.smartisanos.cn/pr/img/video/video_searcher_254e93c084.png" alt="">
                     <span>视频1</span>
                 </a>
             </li>
@@ -91,19 +91,19 @@ export default {
     padding: 60px 0;
     background: #fff;
     text-align: center;
+    font-size: 0;
     li {
         width: 200px;
         margin-right: 50px;
         display: inline-block;
         a {
             display: block;
-            margin-bottom: 16px;
         }
         img {
             display: block;
             width: 200px;
-            height: 200px;
-            background: pink;
+            height: 113px;
+            margin-bottom: 14px;
         }
         &:last-child {
             margin-right: 0;
