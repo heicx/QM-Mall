@@ -114,6 +114,7 @@ body {
 	.footer-nav {
 		float: left;
 		margin-bottom: 30px;
+		margin-left: 35px;
 		li.nav-group {
 			float: left;
 			width: 160px;
@@ -134,6 +135,7 @@ body {
 	}
 	.footer-service {
 		float: right;
+		margin-right: 35px;
 		.tel {
 			color: #646464;
 			font-size: 34px;
@@ -150,6 +152,7 @@ body {
 	.copyright {
 		clear: both;
 		padding-top: 30px;
+		margin: 0 35px;
 		border-top: 1px solid #e3e3e3;
 		.company,
 		.privacy {

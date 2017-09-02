@@ -1,22 +1,23 @@
 <template>
 	<div class="video-wrap">
         <div class="video-main">
-            <div class='main-play pause'>
-                <video id="video-1" class="video-js vjs-default-skin" controls preload="none">
-                    <source src="http://static.smartisanos.cn/common/video/video-jgpro.mp4" type='video/mp4'/>
+            <div class='main-play' :class='{"pause": !isPlay}'>
+                <video id="video-1" ref='videoEle' controls preload="none">
+                    <source :src="currVideoUrl" type='video/mp4'/>
                 </video>
-                <img src="http://static.smartisanos.cn/pr/img/video/u2_pro_272a6077ae.jpg" style="width:672px;heihgt:378px;">
+                <img :src='currImgUrl' />
+                <i @click='videoPlay()'></i>
             </div>
         </div>
         <ul class="video-items">
             <li>
-                <a href="">
-                    <img src="http://static.smartisanos.cn/pr/img/video/video_searcher_254e93c084.png" alt="">
+                <a @click='changeVideo()'>
+                    <img src="http://static.smartisanos.cn/pr/img/video/u2_pro_272a6077ae.jpg" alt="">
                     <span>视频1</span>
                 </a>
             </li>
             <li>
-                <a href="">
+                <a @click='changeVideo()'>
                     <img src="http://static.smartisanos.cn/pr/img/video/video_searcher_254e93c084.png" alt="">
                     <span>视频1</span>
                 </a>
@@ -38,11 +39,35 @@
 </template>
 
 <script>
+import Vue from 'vue';
+
 export default {
-    methods: {},
-    components: {
+    data () {
+        return {
+            isPlay: false,
+            currVideoUrl: 'http://static.smartisanos.cn/common/video/smartisan-game-support.mp4',
+            currImgUrl: 'http://static.smartisanos.cn/pr/img/video/u2_pro_272a6077ae.jpg',
+        }
     },
     mounted() {
+    },
+    methods: {
+        changeVideo() {
+            let videoUrl = 'http://static.smartisanos.cn/common/video/video-jgpro.mp4';
+            let imgUrl = 'http://static.smartisanos.cn/pr/img/video/video_searcher_254e93c084.png';
+
+            this.currVideoUrl = videoUrl;
+            this.currImgUrl = imgUrl;
+            this.isPlay = false;
+            
+            this.$refs.videoEle.load();
+        },
+        videoPlay() {
+            this.$refs.videoEle.play();
+            this.isPlay = true;
+        }
+    },
+    directives: {
     },
     destroyed() {
     }
@@ -61,13 +86,14 @@ export default {
         position: relative;
         width: 100%;
         height: 378px;
-        &.pause:after {
+        &.pause i {
             position: absolute;
             content: '';
             background: url(../../assets/images/pr_play.png) no-repeat;
             width: 40px;
             height: 40px;
             background-size: cover;
+            cursor: pointer;
             top: 169px;
             left: 316px;
         }
@@ -75,6 +101,8 @@ export default {
             visibility: hidden;
         }
         &.pause img {
+            width: 100%;
+            height: 100%;
             visibility: visible;
             position: absolute;
             top: 0;

@@ -2,7 +2,7 @@
   <div id="app" class="app-wrap">
 		<app-header></app-header>
     <app-navigation></app-navigation>
-    <router-view></router-view>
+    <router-view param='val'></router-view>
 		<app-footer></app-footer>
 	</div>
 </template>
@@ -14,12 +14,17 @@ import appFooter from './components/Footer.vue';
 
 export default {
   name: 'app',
+  data() {
+    return {
+      val: 'parent'
+    }
+  },
   components: {
       appHeader,
       appNavigation,
       appFooter
   },
-  mounted() {
+  methods: {
   }
 }
 </script>

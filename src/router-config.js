@@ -14,8 +14,11 @@ let router = new VueRouter({
             component: Home
         },
         {
+            path: '/pr',
+            redirect: '/pr/video',
+        },
+        {
             path: '/pr/video',
-            alias: '/pr',
             component: Video
         },
         { 
