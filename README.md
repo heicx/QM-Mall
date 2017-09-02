@@ -1,6 +1,4 @@
-# test
-
-> A Vue.js project
+# QM-Mall
 
 ## Build Setup
 
