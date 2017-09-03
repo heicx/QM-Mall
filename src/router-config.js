@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import Video from './views/pr/Video.vue'
 import Comment from './views/pr/Comment.vue'
 import WallPaper from './views/pr/WallPaper.vue'
+import News from './views/pr/News.vue'
 
 import NotFound from './views/NotFound.vue'
 
@@ -28,6 +29,10 @@ let router = new VueRouter({
         { 
             path: '/pr/wallpaper',
             component: WallPaper
+        },
+        { 
+            path: '/pr/news',
+            component: News
         },
         { 
             path: '*',

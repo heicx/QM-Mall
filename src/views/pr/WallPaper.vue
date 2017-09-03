@@ -6,28 +6,25 @@
         <div class="wallpaper-content">
             <ul class="img-list">
                 <li>
-                    <img src="http://static.smartisanos.cn/common/pr/cover/jianguopro/tint-gold/7.png" alt="">
+                    <img src="http://c1.mifile.cn/f/i/15/scooter/overall-intro-video-poster.jpg" alt="">
                 </li>
                 <li>
-                    <img src="http://static.smartisanos.cn/common/pr/cover/jianguopro/tint-gold/7.png" alt="">
+                    <img src="http://c1.mifile.cn/f/i/15/scooter/overall-intro-video-poster.jpg" alt="">
                 </li>
                 <li>
-                    <img src="http://static.smartisanos.cn/common/pr/cover/jianguopro/tint-gold/7.png" alt="">
+                    <img src="http://c1.mifile.cn/f/i/15/scooter/overall-intro-video-poster.jpg" alt="">
                 </li>
                 <li>
-                    <img src="http://static.smartisanos.cn/common/pr/cover/jianguopro/tint-gold/7.png" alt="">
+                    <img src="http://c1.mifile.cn/f/i/15/scooter/overall-intro-video-poster.jpg" alt="">
                 </li>
                 <li>
-                    <img src="http://static.smartisanos.cn/common/pr/cover/jianguopro/tint-gold/7.png" alt="">
+                    <img src="http://c1.mifile.cn/f/i/15/scooter/overall-intro-video-poster.jpg" alt="">
                 </li>
                 <li>
-                    <img src="http://static.smartisanos.cn/common/pr/cover/jianguopro/tint-gold/7.png" alt="">
+                    <img src="http://c1.mifile.cn/f/i/15/scooter/overall-intro-video-poster.jpg" alt="">
                 </li>
                 <li>
-                    <img src="http://static.smartisanos.cn/common/pr/cover/jianguopro/tint-gold/7.png" alt="">
-                </li>
-                <li>
-                    <img src="http://static.smartisanos.cn/common/pr/cover/jianguopro/tint-gold/7.png" alt="">
+                    <img src="http://c1.mifile.cn/f/i/15/scooter/overall-intro-video-poster.jpg" alt="">
                 </li>
             </ul>
         </div>

@@ -48,7 +48,7 @@
 				</li>
 			</ul>
 			<div class="copyright">
-				<h3 class="company">Copyright © 2017, Smartisan Digital Co., Ltd. All Rights Reserved.  东莞市轻麦电子科技有限公司</h3>
+				<h3 class="company">Copyright © 2017, QM Digital Co., Ltd. All Rights Reserved.  东莞市轻麦电子科技有限公司</h3>
 				<ul class="privacy">
 					<li>
 						<a href="">法律声明</a>

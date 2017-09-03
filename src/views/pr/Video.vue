@@ -12,26 +12,26 @@
         <ul class="video-items">
             <li>
                 <a @click='changeVideo()'>
-                    <img src="http://static.smartisanos.cn/pr/img/video/u2_pro_272a6077ae.jpg" alt="">
+                    <img src="http://c1.mifile.cn/f/i/15/scooter/overall-intro-video-poster.jpg" alt="">
                     <span>视频1</span>
                 </a>
             </li>
             <li>
                 <a @click='changeVideo()'>
-                    <img src="http://static.smartisanos.cn/pr/img/video/video_searcher_254e93c084.png" alt="">
-                    <span>视频1</span>
+                    <img src="http://c1.mifile.cn/f/i/15/scooter/overall-battery-video-poster.jpg" alt="">
+                    <span>视频2</span>
                 </a>
             </li>
             <li>
                 <a href="">
-                    <img src="http://static.smartisanos.cn/pr/img/video/video_searcher_254e93c084.png" alt="">
-                    <span>视频1</span>
+                    <img src="http://c1.mifile.cn/f/i/15/scooter/overall-intro-video-poster.jpg" alt="">
+                    <span>视频3</span>
                 </a>
             </li>
             <li>
                 <a href="">
-                    <img src="http://static.smartisanos.cn/pr/img/video/video_searcher_254e93c084.png" alt="">
-                    <span>视频1</span>
+                    <img src="http://c1.mifile.cn/f/i/15/scooter/overall-intro-video-poster.jpg" alt="">
+                    <span>视频4</span>
                 </a>
             </li>
         </ul>
@@ -45,16 +45,16 @@ export default {
     data () {
         return {
             isPlay: false,
-            currVideoUrl: 'http://static.smartisanos.cn/common/video/smartisan-game-support.mp4',
-            currImgUrl: 'http://static.smartisanos.cn/pr/img/video/u2_pro_272a6077ae.jpg',
+            currVideoUrl: 'http://s1.mi.com/v/scooter/overall-intro-video.mp4',
+            currImgUrl: 'http://c1.mifile.cn/f/i/15/scooter/overall-intro-video-poster.jpg',
         }
     },
     mounted() {
     },
     methods: {
         changeVideo() {
-            let videoUrl = 'http://static.smartisanos.cn/common/video/video-jgpro.mp4';
-            let imgUrl = 'http://static.smartisanos.cn/pr/img/video/video_searcher_254e93c084.png';
+            let videoUrl = 'http://s1.mi.com/v/scooter/overall-guide-video-3.mp4';
+            let imgUrl = 'http://c1.mifile.cn/f/i/15/scooter/overall-adapt-bg-1.jpg';
 
             this.currVideoUrl = videoUrl;
             this.currImgUrl = imgUrl;
