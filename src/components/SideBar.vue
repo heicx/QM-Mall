@@ -1,13 +1,13 @@
 <template>
-	<div class="side-bar">
-    <h3>{{sidebarName}}</h3>
+	<div class="side-bar-wrap">
+    <h2 class='side-bar-name'>{{sideBarName}}</h2>
     <slot name='sidebar-list'></slot>
 	</div>
 </template>
 
 <script>
 export default {
-  props: ['sidebarName']
+  props: ['sideBarName']
 }
 </script>
 

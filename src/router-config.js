@@ -37,7 +37,13 @@ let router = new VueRouter({
             component: News
         },
         { 
-            path: '/support/guide',
+            name: 'support-order',
+            path: '/order/:name',
+            component: SupportLayout
+        },
+        {
+            name: 'support-service',
+            path: '/service/:name',
             component: SupportLayout
         },
         { 

@@ -14,15 +14,15 @@
         orderList: [
           {
             name: '购买指南',
-            path: '/support/guide'
+            path: '/order/guide'
           },
           {
             name: '支付方式',
-            path: '/support/payment'
+            path: '/order/payment'
           },
           {
             name: '送货政策',
-            path: '/support/delivery'
+            path: '/order/delivery'
           }
         ]
       }
