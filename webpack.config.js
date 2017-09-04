@@ -65,7 +65,8 @@ module.exports = {
   plugins: [extractSass],
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
+      'vue$': 'vue/dist/vue.esm.js',
+      'styles': path.resolve(__dirname, './src/assets/style/')
     }
   },
   devServer: {

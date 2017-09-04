@@ -45,7 +45,7 @@ export default {
 .wallpaper-wrap {
     width: 1220px;
     height: 100%;
-    overflow: hidden;    
+    overflow: hidden;
     margin: 0 auto;
     background: #fff;
     margin-top: 40px;

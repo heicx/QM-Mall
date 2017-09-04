@@ -1,85 +1,85 @@
 <template>
 	<div class='news-wrap'>
-        <div class='news-container'>
-            <div class='news-category'>新闻动态</div>
-            <ul class='news-list'>
-              <li>
-                <div class='article-title'>
-                  <h3 class="">九号平衡车 Plus</h3>
-                  <span class="article-date">2017-05-09 23:00 发布</span>
-                </div>
-                <div class="article-content">
-                  <img src="http://i1.mifile.cn/a4/xmad_15042542317885_XJdKI.jpg" alt="">
-                  <p>Plus 延续了九号平衡车部分控制算法设计，通过内置的体重传感器、
-                  角度姿态传感器、速度传感器、温度传感器、电流传感器等获取用户驾驶数据，
-                  根据智能自适应算法不断地自动优化驾驶控制参数，让用户获得最佳的驾驶体验和安全性。</p>
-                </div>
-              </li>
-              <li>
-                <div class='article-title'>
-                  <h3 class="">九号平衡车 Plus</h3>
-                  <span class="article-date">2017-05-09 23:00 发布</span>
-                </div>
-                <div class="article-content">
-                  <img src="http://i1.mifile.cn/a4/xmad_15042542317885_XJdKI.jpg" alt="">
-                  <p>Plus 延续了九号平衡车部分控制算法设计，通过内置的体重传感器、
-                  角度姿态传感器、速度传感器、温度传感器、电流传感器等获取用户驾驶数据，
-                  根据智能自适应算法不断地自动优化驾驶控制参数，让用户获得最佳的驾驶体验和安全性。</p>
-                </div>
-              </li>
-              <li>
-                <div class='article-title'>
-                  <h3 class="">九号平衡车 Plus</h3>
-                  <span class="article-date">2017-05-09 23:00 发布</span>
-                </div>
-                <div class="article-content">
-                  <img src="http://i1.mifile.cn/a4/xmad_15042542317885_XJdKI.jpg" alt="">
-                  <p>Plus 延续了九号平衡车部分控制算法设计，通过内置的体重传感器、
-                  角度姿态传感器、速度传感器、温度传感器、电流传感器等获取用户驾驶数据，
-                  根据智能自适应算法不断地自动优化驾驶控制参数，让用户获得最佳的驾驶体验和安全性。</p>
-                </div>
-              </li>
-              <li>
-                <div class='article-title'>
-                  <h3 class="">九号平衡车 Plus</h3>
-                  <span class="article-date">2017-05-09 23:00 发布</span>
-                </div>
-                <div class="article-content">
-                  <img src="http://i1.mifile.cn/a4/xmad_15042542317885_XJdKI.jpg" alt="">
-                  <p>Plus 延续了九号平衡车部分控制算法设计，通过内置的体重传感器、
-                  角度姿态传感器、速度传感器、温度传感器、电流传感器等获取用户驾驶数据，
-                  根据智能自适应算法不断地自动优化驾驶控制参数，让用户获得最佳的驾驶体验和安全性。</p>
-                </div>
-              </li>
-              <li>
-                <div class='article-title'>
-                  <h3 class="">九号平衡车 Plus</h3>
-                  <span class="article-date">2017-05-09 23:00 发布</span>
-                </div>
-                <div class="article-content">
-                  <img src="http://i1.mifile.cn/a4/xmad_15042542317885_XJdKI.jpg" alt="">
-                  <p>Plus 延续了九号平衡车部分控制算法设计，通过内置的体重传感器、
-                  角度姿态传感器、速度传感器、温度传感器、电流传感器等获取用户驾驶数据，
-                  根据智能自适应算法不断地自动优化驾驶控制参数，让用户获得最佳的驾驶体验和安全性。</p>
-                </div>
-              </li>
-            </ul>
-        </div>
-        <ul class="banners">
-          <li class="item">
-            <img src="http://static.smartisanos.cn/pr/img/news/banner-4_003f702f04.png" alt="">
-          </li>
-          <li class="item">
-            <img src="http://static.smartisanos.cn/pr/img/news/banner-4_003f702f04.png" alt="">
-          </li>
-          <li class="item">
-            <img src="http://static.smartisanos.cn/pr/img/news/banner-4_003f702f04.png" alt="">
-          </li>
-          <li class="item">
-            <img src="http://static.smartisanos.cn/pr/img/news/banner-4_003f702f04.png" alt="">
-          </li>
-        </ul>
-    </div>
+      <div class='news-container'>
+          <div class='news-category'>新闻动态</div>
+          <ul class='news-list'>
+            <li>
+              <div class='article-title'>
+                <h3 class="">九号平衡车 Plus</h3>
+                <span class="article-date">2017-05-09 23:00 发布</span>
+              </div>
+              <div class="article-content">
+                <img src="http://i1.mifile.cn/a4/xmad_15042542317885_XJdKI.jpg" alt="">
+                <p>Plus 延续了九号平衡车部分控制算法设计，通过内置的体重传感器、
+                角度姿态传感器、速度传感器、温度传感器、电流传感器等获取用户驾驶数据，
+                根据智能自适应算法不断地自动优化驾驶控制参数，让用户获得最佳的驾驶体验和安全性。</p>
+              </div>
+            </li>
+            <li>
+              <div class='article-title'>
+                <h3 class="">九号平衡车 Plus</h3>
+                <span class="article-date">2017-05-09 23:00 发布</span>
+              </div>
+              <div class="article-content">
+                <img src="http://i1.mifile.cn/a4/xmad_15042542317885_XJdKI.jpg" alt="">
+                <p>Plus 延续了九号平衡车部分控制算法设计，通过内置的体重传感器、
+                角度姿态传感器、速度传感器、温度传感器、电流传感器等获取用户驾驶数据，
+                根据智能自适应算法不断地自动优化驾驶控制参数，让用户获得最佳的驾驶体验和安全性。</p>
+              </div>
+            </li>
+            <li>
+              <div class='article-title'>
+                <h3 class="">九号平衡车 Plus</h3>
+                <span class="article-date">2017-05-09 23:00 发布</span>
+              </div>
+              <div class="article-content">
+                <img src="http://i1.mifile.cn/a4/xmad_15042542317885_XJdKI.jpg" alt="">
+                <p>Plus 延续了九号平衡车部分控制算法设计，通过内置的体重传感器、
+                角度姿态传感器、速度传感器、温度传感器、电流传感器等获取用户驾驶数据，
+                根据智能自适应算法不断地自动优化驾驶控制参数，让用户获得最佳的驾驶体验和安全性。</p>
+              </div>
+            </li>
+            <li>
+              <div class='article-title'>
+                <h3 class="">九号平衡车 Plus</h3>
+                <span class="article-date">2017-05-09 23:00 发布</span>
+              </div>
+              <div class="article-content">
+                <img src="http://i1.mifile.cn/a4/xmad_15042542317885_XJdKI.jpg" alt="">
+                <p>Plus 延续了九号平衡车部分控制算法设计，通过内置的体重传感器、
+                角度姿态传感器、速度传感器、温度传感器、电流传感器等获取用户驾驶数据，
+                根据智能自适应算法不断地自动优化驾驶控制参数，让用户获得最佳的驾驶体验和安全性。</p>
+              </div>
+            </li>
+            <li>
+              <div class='article-title'>
+                <h3 class="">九号平衡车 Plus</h3>
+                <span class="article-date">2017-05-09 23:00 发布</span>
+              </div>
+              <div class="article-content">
+                <img src="http://i1.mifile.cn/a4/xmad_15042542317885_XJdKI.jpg" alt="">
+                <p>Plus 延续了九号平衡车部分控制算法设计，通过内置的体重传感器、
+                角度姿态传感器、速度传感器、温度传感器、电流传感器等获取用户驾驶数据，
+                根据智能自适应算法不断地自动优化驾驶控制参数，让用户获得最佳的驾驶体验和安全性。</p>
+              </div>
+            </li>
+          </ul>
+      </div>
+      <ul class="banners">
+        <li class="item">
+          <img src="http://c1.mifile.cn/f/i/15/scooter/overall-intro-video-poster.jpg" alt="">
+        </li>
+        <li class="item">
+          <img src="http://c1.mifile.cn/f/i/15/scooter/overall-intro-video-poster.jpg" alt="">
+        </li>
+        <li class="item">
+          <img src="http://c1.mifile.cn/f/i/15/scooter/overall-intro-video-poster.jpg" alt="">
+        </li>
+        <li class="item">
+          <img src="http://c1.mifile.cn/f/i/15/scooter/overall-intro-video-poster.jpg" alt="">
+        </li>
+      </ul>
+  </div>
 </template>
 
 <script>
@@ -163,5 +163,13 @@ export default {
 .banners {
   float: right;
   overflow: hidden;
+  li {
+    width: 320px;
+    height: 100%;
+    img {
+      width: 100%;
+      border-radius: 6px;
+    }
+  }
 }
 </style>

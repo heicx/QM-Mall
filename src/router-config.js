@@ -6,6 +6,8 @@ import Comment from './views/pr/Comment.vue'
 import WallPaper from './views/pr/WallPaper.vue'
 import News from './views/pr/News.vue'
 
+import SupportLayout from './views/support/Layout.vue'
+
 import NotFound from './views/NotFound.vue'
 
 let router = new VueRouter({
@@ -33,6 +35,10 @@ let router = new VueRouter({
         { 
             path: '/pr/news',
             component: News
+        },
+        { 
+            path: '/support/guide',
+            component: SupportLayout
         },
         { 
             path: '*',
