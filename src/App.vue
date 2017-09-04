@@ -2,9 +2,7 @@
   <div id="app" class="app-wrap">
 		<app-header></app-header>
     <app-navigation></app-navigation>
-    <transition name='fade'>
-      <router-view param='val'></router-view>
-    </transition>
+    <router-view param='val'></router-view>
 		<app-footer></app-footer>
 	</div>
 </template>
@@ -35,12 +33,5 @@ export default {
 <style lang='scss' scoped>
 .app-wrap {
   min-width: 1220px;
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0
 }
 </style>
