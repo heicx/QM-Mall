@@ -2,9 +2,11 @@ import VueRouter from 'vue-router'
 
 import Home from './views/Home.vue'
 import Video from './views/pr/Video.vue'
-import Comment from './views/pr/Comment.vue'
+import Comments from './views/pr/Comments.vue'
 import WallPaper from './views/pr/WallPaper.vue'
 import News from './views/pr/News.vue'
+
+import Contact from './views/support/Contact.vue'
 
 import SupportLayout from './views/support/Layout.vue'
 
@@ -26,7 +28,7 @@ let router = new VueRouter({
         },
         { 
             path: '/pr/comment',
-            component: Comment
+            component: Comments
         },
         { 
             path: '/pr/wallpaper',
@@ -45,6 +47,15 @@ let router = new VueRouter({
             name: 'support-service',
             path: '/service/:name',
             component: SupportLayout
+        },
+        {
+            name: 'support-copyright',
+            path: '/copyright/:name',
+            component: SupportLayout
+        },
+        {
+            path: '/contact',
+            component: Contact
         },
         { 
             path: '*',

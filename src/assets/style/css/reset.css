@@ -18,6 +18,7 @@ time, mark, audio, video {
 }
 
 a {
+    color: #666;
     cursor: pointer;
     transition: all .15s ease-out;
     text-decoration: none;

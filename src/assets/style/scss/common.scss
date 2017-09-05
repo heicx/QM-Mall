@@ -91,7 +91,7 @@ body {
 		&:hover {
 			transition: all .15s ease-out;
 			background: #139fb7;
-			border: 1px solid #648ea2;
+			border: 1px solid #4a839e;
 		}
 	}
 }
@@ -126,10 +126,15 @@ body {
 		}
 		.items {
 			font-size: $fontSize;
-			color: #666;
 			margin-top: 14px;
+			color: #666;
 			li {
+				transition: all .15s ease-out;
+				cursor: pointer;
 				padding: 6px 0;
+				&:hover {
+					color: #02bbda;
+				}
 			}
 		}
 	}
