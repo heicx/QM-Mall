@@ -89,7 +89,7 @@ export default {
         &.pause i {
             position: absolute;
             content: '';
-            background: url(../../assets/images/pr_play.png) no-repeat;
+            background: url(~images/pr_play.png) no-repeat;
             width: 40px;
             height: 40px;
             background-size: cover;

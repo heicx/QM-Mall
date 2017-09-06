@@ -13,7 +13,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, './dist'),
-    publicPath: '/dist/',
+    publicPath: process.env.NODE_ENV === "development" ? '/': '/dist/',
     filename: '[name].bundle.js'
   },
   module: {
@@ -66,7 +66,8 @@ module.exports = {
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      'styles': path.resolve(__dirname, './src/assets/style/')
+      'styles': path.resolve(__dirname, './src/assets/style/'),
+      'images': path.resolve(__dirname, './src/assets/images/')
     }
   },
   devServer: {
