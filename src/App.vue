@@ -1,9 +1,9 @@
 <template>
   <div id="app" class="app-wrap">
-		<app-header></app-header>
-    <app-navigation></app-navigation>
-    <router-view param='val'></router-view>
-		<app-footer></app-footer>
+		<app-header v-if='isShow'></app-header>
+    <app-navigation v-if='isShow'></app-navigation>
+    <router-view v-if='isShow'></router-view>
+		<app-footer v-if='isShow'></app-footer>
 	</div>
 </template>
 
@@ -16,8 +16,16 @@ export default {
   name: 'app',
   data() {
     return {
-      val: 'parent'
+      isShow: true
     }
+  },
+  created() {
+    if(this.$route.path === '/signin') {
+      this.isShow = false;
+    }
+  },
+  mounted() {
+    console.log(this.test)
   },
   components: {
       appHeader,

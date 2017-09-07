@@ -1,15 +1,16 @@
 import VueRouter from 'vue-router'
 
+import PassportLayout from './components/Passport.vue';
+
+import Signin from './views/account/Signin.vue';
+import Signup from './views/account/Signup.vue';
 import Home from './views/Home.vue'
 import Video from './views/pr/Video.vue'
 import Comments from './views/pr/Comments.vue'
 import WallPaper from './views/pr/WallPaper.vue'
 import News from './views/pr/News.vue'
-
 import Contact from './views/support/Contact.vue'
-
 import SupportLayout from './views/support/Layout.vue'
-
 import NotFound from './views/NotFound.vue'
 
 let router = new VueRouter({
@@ -17,6 +18,19 @@ let router = new VueRouter({
         { 
             path: '/',
             component: Home
+        },
+        { 
+            path: '/signin',
+            component: PassportLayout,
+            beforeEnter: (to, from, next) => {
+                next(vm=> {
+                    vm.$data.test = 123;
+                });
+            }
+        },
+        {
+            path: '/signup',
+            component: PassportLayout
         },
         {
             path: '/pr',

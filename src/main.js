@@ -9,5 +9,13 @@ Vue.use(VueRouter);
 new Vue({
   el: '#app',
   router,
-  render: h => h(App)
+  data() {
+    return {
+    }
+  },
+  mounted() {
+  },
+  render: h => {
+    return h(App);
+  }
 })
