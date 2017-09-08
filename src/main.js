@@ -13,8 +13,6 @@ new Vue({
     return {
     }
   },
-  mounted() {
-  },
   render: h => {
     return h(App);
   }

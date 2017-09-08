@@ -1,4 +1,5 @@
 import VueRouter from 'vue-router'
+import Bus from './bus';
 
 import PassportLayout from './components/Passport.vue';
 
@@ -19,16 +20,13 @@ let router = new VueRouter({
             path: '/',
             component: Home
         },
-        { 
+        {
+            name: 'signin',
             path: '/signin',
-            component: PassportLayout,
-            beforeEnter: (to, from, next) => {
-                next(vm=> {
-                    vm.$data.test = 123;
-                });
-            }
+            component: PassportLayout
         },
         {
+            name: 'signup',
             path: '/signup',
             component: PassportLayout
         },
@@ -75,7 +73,20 @@ let router = new VueRouter({
             path: '*',
             component: NotFound
         }
-    ]
+    ],
+    scrollBehavior(to, from, savedPosition) {
+        return {x: 0, y: 0};
+    }
+});
+
+router.beforeEach((to, from, next)=> {
+    if(to.path == '/signin') {
+        Bus.$emit('changeLayout', false);
+    }else {
+        Bus.$emit('changeLayout', true);
+    }
+
+    next();
 });
 
 export default router;

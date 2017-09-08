@@ -2,7 +2,7 @@
   <div id="app" class="app-wrap">
 		<app-header v-if='isShow'></app-header>
     <app-navigation v-if='isShow'></app-navigation>
-    <router-view v-if='isShow'></router-view>
+    <router-view></router-view>
 		<app-footer v-if='isShow'></app-footer>
 	</div>
 </template>
@@ -11,6 +11,7 @@
 import appHeader from './components/Header.vue';
 import appNavigation from './components/Navigation.vue';
 import appFooter from './components/Footer.vue';
+import Bus from './bus';
 
 export default {
   name: 'app',
@@ -20,12 +21,11 @@ export default {
     }
   },
   created() {
-    if(this.$route.path === '/signin') {
-      this.isShow = false;
-    }
+    Bus.$on('changeLayout', (status)=> {
+      this.isShow = status;
+    });
   },
   mounted() {
-    console.log(this.test)
   },
   components: {
       appHeader,

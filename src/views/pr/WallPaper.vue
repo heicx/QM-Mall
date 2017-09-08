@@ -34,7 +34,10 @@
 <script>
 export default {
     methods: {},
-    mounted() {
+    created() {
+        this.$emit('changeLayout', true);
+    },
+    mounted() {        
     },
     destroyed() {
     }
