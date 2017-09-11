@@ -88,8 +88,8 @@ body {
     border-radius: 5px;
 		font-size: 14px;
 		margin-top: 15px;
+		transition: all .15s ease-out;
 		&:hover {
-			transition: all .15s ease-out;
 			background: #139fb7;
 			border: 1px solid #4a839e;
 		}

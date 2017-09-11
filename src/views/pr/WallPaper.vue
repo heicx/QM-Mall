@@ -35,7 +35,6 @@
 export default {
     methods: {},
     created() {
-        this.$emit('changeLayout', true);
     },
     mounted() {        
     },

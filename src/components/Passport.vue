@@ -4,10 +4,10 @@
       <h2 class='logo'></h2>
       <ul class='tabs clearfix'>
         <li>
-          <router-link :class='{"active": isLogin}' to='/signin'>登录</router-link>
+          <router-link :class='{"active": isLogin}' to='/signin' replace>登录</router-link>
         </li>
         <li>
-          <router-link :class='{"active": isRegister}' to='/signup'>注册</router-link>
+          <router-link :class='{"active": !isLogin}' to='/signup' replace>注册</router-link>
         </li>
       </ul>
       <component :is="passportTempl"></component>
@@ -26,33 +26,25 @@ export default {
   data(){
     return {
       isLogin: null,
-      isRegister: null,
       passportTempl: null
     }
   },
   beforeCreate() {
-    // Bus.$emit('changeLayout', false);
-    console.log('123');
+    Bus.$emit('changeLayout', false);
   },
   beforeRouteEnter: (to, from, next) => {
     next(vm=> {
+      console.log(to.path)
       if(to.path === '/signin') {
         vm.$data.passportTempl = Signin;
         vm.$data.isLogin = true;
-        vm.$data.isRegister = false;
-      }else if(to.path === '/signup') {
-        vm.$data.passportTempl = Signin;
-        vm.$data.isRegister = true;
+      }else {
+        vm.$data.passportTempl = Signup;
         vm.$data.isLogin = false;
       }
-
-      console.log(vm.$data.isLogin);
-
-      
-    });
+    })
   },
   mounted() {
-    
   }
 }
 </script>
@@ -64,21 +56,23 @@ export default {
   height: 100%;
   overflow: hidden;
   margin: 0 auto;
-  background: #e3e3e3;
+  background: #f7fafc;
   min-height: 800px;
   min-width: 630px;
 }
 
 .passport-form {
   display: block;
-  margin-top: -324px;
+  margin-top: -235px;
   position: absolute;
-  width: 450px;
+  width: 400px;
   border: 1px solid #dadada;
   border-radius: 10px;
   top: 50%;
   left: 50%;
-  margin-left: -225px;
+  margin-left: -200px;
+  background: #fff;
+  box-shadow: 0 9px 30px -6px rgba(0,0,0,.2), 0 18px 20px -10px rgba(0,0,0,.04), 0 18px 20px -10px rgba(0,0,0,.04), 0 10px 20px -10px rgba(0,0,0,.04);
   .logo {
     position: relative;
     background-image: url(~images/logo.png);
@@ -86,7 +80,7 @@ export default {
     background-position: top center;
     background-repeat: no-repeat;
     height: 30px;
-    margin: 25px 0 25px;
+    margin: 42px 0 25px;
   }
   .tabs {
     text-align: center;
@@ -110,7 +104,8 @@ export default {
         position: absolute;
         border-bottom: 1px solid #02bbda;
         bottom: -6px;
-        left: 0;
+        left: 1px;
+        width: 100%;
       }
     }
     a:hover {
