@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="app-wrap">
-		<app-header v-if='isShow'></app-header>
+		<app-header :data-t="path" v-if='isShow'></app-header>
     <app-navigation v-if='isShow'></app-navigation>
     <router-view></router-view>
 		<app-footer v-if='isShow'></app-footer>
@@ -17,15 +17,14 @@ export default {
   name: 'app',
   data() {
     return {
-      isShow: true
+      isShow: true,
+      path: this.$route.name
     }
   },
   created() {
     Bus.$on('changeLayout', (status)=> {
       this.isShow = status;
     });
-  },
-  mounted() {
   },
   components: {
       appHeader,

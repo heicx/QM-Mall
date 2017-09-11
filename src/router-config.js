@@ -21,12 +21,12 @@ let router = new VueRouter({
             component: Home
         },
         {
-            name: 'signin',
+            name: 'passport',
             path: '/signin',
             component: PassportLayout
         },
         {
-            name: 'signup',
+            name: 'passport',
             path: '/signup',
             component: PassportLayout
         },
@@ -80,9 +80,7 @@ let router = new VueRouter({
 });
 
 router.beforeEach((to, from, next)=> {
-    if(to.path == '/signin') {
-        Bus.$emit('changeLayout', false);
-    }else {
+    if(to.name != 'passport') {
         Bus.$emit('changeLayout', true);
     }
 
