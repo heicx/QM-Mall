@@ -115,7 +115,10 @@ export default {
 
       next();
     },
+    created() {
+    },
     mounted() {
+      
     },
     destroyed() {
     },

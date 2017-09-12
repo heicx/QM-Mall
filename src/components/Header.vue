@@ -3,9 +3,9 @@
 		<div class="container clearfix">
 			<div class="topbar-logo"></div>
 			<div class="topbar-info">
-				<a class="link">登录</a>
+				<router-link to='/signin' class='link'>登录</router-link>
 				<span class="sep">|</span>
-				<a class="link">注册</a>
+				<router-link to='/signup' class='link'>注册</router-link>
 			</div>
 		</div>
 	</div>

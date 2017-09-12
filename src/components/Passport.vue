@@ -17,10 +17,8 @@
 
 <script>
 import Bus from '../bus';
-import Signin from '../views/account/Signin.vue';
-import Signup from '../views/account/Signup.vue';
-
-const PATH_NAME = ['signin', 'signup'];
+import Signin from '../views/passport/Signin.vue';
+import Signup from '../views/passport/Signup.vue';
 
 export default {
   data(){
@@ -34,7 +32,6 @@ export default {
   },
   beforeRouteEnter: (to, from, next) => {
     next(vm=> {
-      console.log(to.path)
       if(to.path === '/signin') {
         vm.$data.passportTempl = Signin;
         vm.$data.isLogin = true;
@@ -49,7 +46,11 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+body {
+  background: #f7fafc;
+}
+
 .passport-wrap {
   position: relative;
   width: 100%;
@@ -57,7 +58,7 @@ export default {
   overflow: hidden;
   margin: 0 auto;
   background: #f7fafc;
-  min-height: 800px;
+  min-height: 850px;
   min-width: 630px;
 }
 

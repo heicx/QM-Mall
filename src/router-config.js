@@ -3,8 +3,8 @@ import Bus from './bus';
 
 import PassportLayout from './components/Passport.vue';
 
-import Signin from './views/account/Signin.vue';
-import Signup from './views/account/Signup.vue';
+import Signin from './views/passport/Signin.vue';
+import Signup from './views/passport/Signup.vue';
 import Home from './views/Home.vue'
 import Video from './views/pr/Video.vue'
 import Comments from './views/pr/Comments.vue'
@@ -12,6 +12,7 @@ import WallPaper from './views/pr/WallPaper.vue'
 import News from './views/pr/News.vue'
 import Contact from './views/support/Contact.vue'
 import SupportLayout from './views/support/Layout.vue'
+import AccountLayout from './views/account/Layout.vue'
 import NotFound from './views/NotFound.vue'
 
 let router = new VueRouter({
@@ -68,6 +69,26 @@ let router = new VueRouter({
         {
             path: '/contact',
             component: Contact
+        },
+        { 
+            name: 'account',
+            path: '/account/order',
+            component: AccountLayout
+        },
+        { 
+            name: 'account',
+            path: '/account/order/:id',
+            component: AccountLayout
+        },
+        { 
+            name: 'account',
+            path: '/account/address',
+            component: AccountLayout
+        },
+        { 
+            name: 'account',
+            path: '/account/information',
+            component: AccountLayout
         },
         { 
             path: '*',
