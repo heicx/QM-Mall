@@ -16,6 +16,7 @@ import AccountLayout from './views/account/Layout.vue'
 import NotFound from './views/NotFound.vue'
 
 let router = new VueRouter({
+    // mode: 'history',
     routes: [
         { 
             path: '/',
