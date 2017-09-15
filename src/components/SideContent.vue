@@ -10,7 +10,3 @@ export default {
   props: ['sideBarItemName']
 }
 </script>
-
-<style lang="sass">
-
-</style>
