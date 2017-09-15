@@ -7,7 +7,7 @@
           订单号：<a>170911543271119</a>
         </span>
         <span class='order-detail'>
-          <a href="">查看详情</a>
+          <router-link to='/account/order/12'>查看详情</router-link>
         </span>
         <span class='sub-total'>应付总额</span>
         <span class='operation'>商品操作</span>
@@ -37,7 +37,7 @@
           订单号：<a>170911543271119</a>
         </span>
         <span class='order-detail'>
-          <a href="">查看详情</a>
+          <router-link to='/account/order/13'>查看详情</router-link>
         </span>
         <span class='sub-total'>应付总额</span>
         <span class='operation'>商品操作</span>
@@ -63,7 +63,7 @@
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
   .side-content-wrap {
     padding-bottom: 6px;
   }
