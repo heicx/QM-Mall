@@ -41,12 +41,14 @@ export default {
           vm.$data.sideBarName = '账户中心';
         }
 
+        console.log(to)
         if(to.path === '/account/order') {
           vm.$data.currSideContentTempl = OrderListTempl;
           vm.$data.sideBarItemName = '我的订单';
-        }else if(to.path === '/account/order/detail') {
+        }else if(to.path.match(/account\/order\/\d+/g)) {
           vm.$data.currSideContentTempl = OrderDetailTempl;
           vm.$data.sideBarItemName = '订单详情';
+          vm.$data.currPath = '/account/order';
         }else if(to.path === '/account/address') {
           vm.$data.currSideContentTempl = AddressListTempl;
           vm.$data.sideBarItemName = '收货地址';
@@ -67,9 +69,10 @@ export default {
       if(to.path === '/account/order') {
         this.currSideContentTempl = OrderListTempl;
         this.sideBarItemName = '我的订单';
-      }else if(to.path === '/account/order/detail') {
+      }else if(to.path.match(/account\/order\/\d+/g)) {
         this.currSideContentTempl = OrderDetailTempl;
         this.sideBarItemName = '订单详情';
+        this.currPath = '/account/order';
       }else if(to.path === '/account/address') {
         this.currSideContentTempl = AddressListTempl;
         this.sideBarItemName = '收货地址';
