@@ -41,7 +41,6 @@ export default {
           vm.$data.sideBarName = '账户中心';
         }
 
-        console.log(to)
         if(to.path === '/account/order') {
           vm.$data.currSideContentTempl = OrderListTempl;
           vm.$data.sideBarItemName = '我的订单';
