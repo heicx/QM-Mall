@@ -1,28 +1,78 @@
 <template>
   <div class='side-content'>
-    <p>尊敬的用户您好，感谢您选择我们的产品，如您在购买的过程中遇到任何疑问，请及时联系。</p>
-    <h3>送货政策</h3>
-    <p>尊敬的用户您好，感谢您选择我们的产品，如您在购买的过程中遇到任何疑问，请及时联系。</p>
-    <h3>使用说明</h3>
-    <dl>
-      <dt>问：什么是电子优惠券？</dt>
-      <dd>
-        答：电子发票是指在购销商品、提供或者接受服务以及从事其他经营活动中，开具、收取的以电子方式存储的发票凭证，开具的电子发票均为真实有效的合法发票，与传统纸质发票具有同等法律效力，可作为用户报销、保修的有效凭证。
-      </dd>
-    </dl>
-    <dl>
-      <dt>问：什么是电子优惠券？</dt>
-      <dd>
-        答：电子发票是指在购销商品、提供或者接受服务以及从事其他经营活动中，开具、收取的以电子方式存储的发票凭证，开具的电子发票均为真实有效的合法发票，与传统纸质发票具有同等法律效力，可作为用户报销、保修的有效凭证。
-      </dd>
-    </dl>
-    <dl>
-      <dt>问：什么是电子优惠券？</dt>
-      <dd>
-        答：电子发票是指在购销商品、提供或者接受服务以及从事其他经营活动中，开具、收取的以电子方式存储的发票凭证，开具的电子发票均为真实有效的合法发票，与传统纸质发票具有同等法律效力，可作为用户报销、保修的有效凭证。
-      </dd>
-    </dl>
-    <h3>购买渠道</h3>
-    <p>尊敬的用户您好，感谢您选择我们的产品，如您在购买的过程中遇到任何疑问，请及时联系。</p>
+    <div class="information-group">
+      <div class="group-item clearfix">
+        <div class="item-info">
+          <span class="title">账户昵称</span>
+          <span class="name">悟空sudo</span>
+        </div>
+        <div class="update">
+          <a href="" class="">修改</a>
+        </div>
+      </div>
+      <div class="group-item clearfix">
+        <div class="item-info">
+          <span class="title">登录密码</span>
+          <span class="name">互联网账号存在被盗风险，建议您定期更改密码以保护账户安全。</span>
+        </div>
+        <div class="update">
+          <a href="" class="">修改</a>
+        </div>
+      </div>
+      <div class="group-item clearfix">
+        <div class="item-info">
+          <span class="title">手机号码</span>
+          <span class="name">您验证的手机：139****9088</span>
+        </div>
+      </div>
+      <div class="group-item clearfix">
+        <div class="item-info">
+          <span class="title">邮箱验证</span>
+          <span class="name">您验证的邮箱：he******do@163.com</span>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.information-group {
+  padding: 0 20px;
+}
+.side-content {
+  margin-top: 20px;
+}
+.group-item {
+  font-size: 0;
+  padding-bottom: 15px;
+  border-bottom: 1px dashed #EFEFEF;
+  &+.group-item {
+    padding-top: 15px;
+  }
+  .item-info {
+    width: 50%;
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: middle;
+    .title {
+      display: block;
+      font-size: 16px;
+      font-weight: 400;
+      color: #333;
+    }
+    .name {
+      display: block;
+      margin-top: 6px;
+      font-size: 14px;
+      color: #999;
+    }
+  }
+  .update {
+    width: 50%;
+    font-size: 14px;
+    text-align: right;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}
+</style>
