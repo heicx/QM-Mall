@@ -67,8 +67,8 @@
   .side-content-wrap {
     padding-bottom: 6px;
   }
-  .side-content-wrap .module-name {
-    margin-bottom: 0;
+  .side-content {
+    margin-top: 0;
   }
   .order-groups {
     padding-bottom: 15px;
