@@ -133,7 +133,7 @@
     }
     .goods-name {
       padding-left: 30px;
-      padding-right: 95px;
+      padding-right: 93px;
       width: 500px;
     }
     .price {
