@@ -14,6 +14,7 @@ import Contact from './views/support/Contact.vue'
 import SupportLayout from './views/support/Layout.vue'
 import AccountLayout from './views/account/Layout.vue'
 import Checkout from './views/payment/Checkout.vue'
+import Payment from './views/payment/Payment.vue'
 import NotFound from './views/NotFound.vue'
 
 
@@ -96,6 +97,10 @@ let router = new VueRouter({
         { 
             path: '/checkout/:id',
             component: Checkout
+        },
+        { 
+            path: '/payment/:id',
+            component: Payment
         },
         { 
             path: '*',
