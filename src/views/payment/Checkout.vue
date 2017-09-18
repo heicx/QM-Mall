@@ -50,10 +50,59 @@
         </p>
       </div>
     </div>
+    <div class="payment-card goods-group">
+      <div class="header">
+        <span class="title">购物清单</span>
+      </div>
+      <div class="group-column">
+        <span class="column-name title">
+          商品名称
+        </span>
+        <span class="column-name total">
+          小计
+        </span>
+        <span class="column-name num">
+          数量
+        </span>
+        <span class="column-name price">
+          单价
+        </span>
+      </div>
+      <ul class="goods-list">
+        <li>
+          <div class="img">
+            <a href="">
+              <img src="http://i8.mifile.cn/a1/pms_1505401464.03824312!560x560.jpg">
+            </a>
+          </div>
+          <span class="title">手机</span>
+          <span class="price">￥ 1999</span>
+          <span class="num">2</span>
+          <span class="sub-total">￥ 3998</span>
+        </li>
+      </ul>
+      <div class="summary">
+        <h2 class="total">
+          商品总计：
+          <span class="price">3299</span>
+        </h2>
+        <h2 class="postage">
+          运费：+
+          <span class="price">15</span>
+        </h2>
+      </div>
+      <div class="payment">
+        <button class="commit-btn">提交订单</button>
+        <span class="total-price">
+          应付总额：
+          <em>¥ 3299</em>
+        </span>
+      </div>
+    </div>
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .payment-wrap {
   width: 1220px;
   height: 100%;
@@ -61,7 +110,6 @@
   margin: 0 auto;
   background: #ededed;
   margin-top: 40px;
-  margin-bottom: 40px;
   border-radius: 8px 8px 0 0;
   padding-bottom: 40px;
 }
@@ -146,12 +194,13 @@
   .invoice-name,
   .invoice-type,
   .invoice-detail {
+    font-size:14px;
     height: 36px;
     line-height: 36px;
   }
   .invoice-type {
     label {
-      margin-right: 5px;
+      margin-right: 15px;
       span.blue-radio {
         overflow: hidden;
         display: inline-block;
@@ -167,7 +216,7 @@
         box-shadow: 0 2px 4px rgba(0,0,0,.05) inset;
         cursor: pointer;
         top: 4px;
-        margin: 0 3px 0 6px;
+        margin: 0 3px 0 -5px;
         &.on {
           i {
             overflow: hidden;
@@ -208,8 +257,7 @@
       input {
         width: 310px;
         padding-left: 11px;
-        color: inherit;
-        font: inherit;
+        font-size: 12px;
         margin: 0;
         position: relative;
         z-index: 3;
@@ -221,6 +269,148 @@
       &.error {
         border: 1px solid #E66157;
         opacity: 1;
+      }
+    }
+  }
+}
+.goods-group {
+  margin-top: 20px;
+  .group-column {
+    padding: 0 0 0 29px;
+    border-top: none;
+    font-size: 12px;
+    height: 38px;
+    padding: 0 24px;
+    background: #EEE;
+    border-bottom: 1px solid #DBDBDB;
+    line-height: 38px;
+    color: #666;
+  }
+  .column-name {
+    &:first-child {
+      float: left;
+    }
+    float: right;
+    &.price {
+      margin-right: 146px;
+    }
+    &.num {
+      margin-right: 138px;
+    }
+    &.total {
+      margin-right: 12px;
+    }
+  }
+  .goods-list {
+    overflow: hidden;
+    padding: 30px;
+    .img,
+    .title,
+    .price,
+    .num,
+    .sub-total {
+      font-size: 14px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .img {
+      border: 1px solid #EBEBEB;
+      width: 78px;
+      height: 78px;
+      border-radius: 4px;
+      img {
+        width: 78px;
+        height: 78px;
+        border-radius: 4px;
+      }
+    }
+    .price,
+    .num,
+    .sub-total {
+      width: 60px;
+      margin-left: 100px;
+      text-align: right;
+    }
+    .title {
+      width: 440px;
+      margin-left: 30px;
+    }
+    .price,
+    .sub-total {
+      font-weight: bold;
+    }
+    .price {
+      margin-left: 200px;
+    }
+  }
+  .summary {
+    padding: 20px 30px;
+    border-top: 1px solid #EFEFEF;
+    .total,
+    .postage,
+    .sub-total {
+      height: 30px;
+      line-height: 30px;
+      font-size: 14px;
+      text-align: right;
+      .price {
+        position: relative;
+        font-weight: bolder;
+        margin-left: 20px;
+        display: inline-block;
+        &:before {
+          position: absolute;
+          content: '￥';
+          display: inline-block;
+          font-size: 12px;
+          left: -14px;
+          bottom: -1px;
+        }
+      }
+    }
+  }
+  .payment {
+    overflow: hidden;
+    padding: 22px 29px 19px 30px;
+    background: #F5F5F5;
+    border-top: 1px solid #DADADA;
+    border-radius: 0 0 6px 6px;
+    box-shadow: -3px 0 8px rgba(0,0,0,.04);
+    color: #626262;
+    .commit-btn,
+    .total-price {
+      float: right;
+    }
+    .commit-btn {
+      width: 136px;
+      height: 46px;
+      display: block;
+      padding: 1px;
+      border-radius: 6px;
+      border: none;
+      background: #02bbda;
+      text-align: center;
+      text-shadow: rgba(255,255,255,.496094) 0 1px 0;
+      cursor: pointer;
+      color: #FFF;
+      opacity: .85;
+      transition: opacity 0.15s ease-out;
+      &:hover {
+        opacity: 1;
+      }
+    }
+    .total-price {
+      padding: 0 40px;
+      line-height: 50px;
+      font-size: 14px;
+      em {
+        display: inline-block;
+        position: relative;
+        top: 3px;
+        margin-top: -4px;
+        font-size: 24px;
+        color: #d44d44;
+        font-weight: bold;
       }
     }
   }
