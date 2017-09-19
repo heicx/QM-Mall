@@ -92,7 +92,7 @@
         </h2>
       </div>
       <div class="payment">
-        <button class="commit-btn">提交订单</button>
+        <router-link to='/payment/1234567' tag='button' class='commit-btn'>提交订单</router-link>
         <span class="total-price">
           应付总额：
           <em>¥ 3299</em>
