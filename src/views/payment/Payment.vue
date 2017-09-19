@@ -11,9 +11,11 @@
 <script>
 export default {
   beforeRouteLeave: (to, from, next) => {
-    // console.log(this.$route)
-    // ...
-    // next(false);
+    if(/checkout/.test(to.path)) {
+      next(false);
+    }else {
+      window.location.replace('#' + to.path);
+    }
   }
 }
 </script>
