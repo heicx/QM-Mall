@@ -22,4 +22,4 @@
 <script>
 </script>
 
-<style src='../../assets/style/scss/passportForm.scss' lang='scss'></style>
+<style src='../../assets/style/scss/passportForm.scss' lang='scss' scoped></style>
