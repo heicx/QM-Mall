@@ -31,10 +31,10 @@
 					<h3>媒体中心</h3>
 					<ul class="items">
 						<li>
-							<router-link to='/service/policy'>新闻动态</router-link>
+							<router-link to='/pr/news'>新闻动态</router-link>
 						</li>
 						<li>
-							<router-link to='/service/policy'>图片资源</router-link>
+							<router-link to='/pr/wallpaper'>图片资源</router-link>
 						</li>
 					</ul>
 				</li>
