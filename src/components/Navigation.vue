@@ -19,19 +19,19 @@ export default {
       list: [
         {
           name: '概览',
-          link: '/'
+          link: '/overview'
         },
         {
           name: '设计',
-          link: '/'
+          link: '/desgin'
         },
         {
           name: '科技',
-          link: '/'
+          link: '/tech'
         },
         {
           name: '参数',
-          link: '/'
+          link: '/specs'
         },
         {
           name: '视频',
@@ -39,7 +39,7 @@ export default {
         },
         {
           name: '用户评价',
-          link: '/'
+          link: '/comment'
         },
         {
           name: '壁纸下载',
