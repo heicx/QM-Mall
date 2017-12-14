@@ -41,9 +41,9 @@
 				<li class="nav-group">
 					<h3>关于公司</h3>
 					<ul class="items">
-						<li>
+						<!-- <li>
 							<router-link to='/about'>公司简介</router-link>
-						</li>
+						</li> -->
 						<li>
 							<router-link to='/contact'>联系我们</router-link>
 						</li>
@@ -69,6 +69,7 @@
 			</ul>
 			<div class="copyright">
 				<h3 class="company">Copyright © 2017, QM Digital Co., Ltd. All Rights Reserved.  东莞市轻麦电子科技有限公司</h3>
+				<h3 class="record">粤ICP备15108072号-1</h3>
 				<ul class="privacy">
 					<li>
 						<router-link to='/copyright/agreement'>法律声明</router-link>

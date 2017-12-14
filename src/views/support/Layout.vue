@@ -68,7 +68,7 @@ export default {
           vm.$data.currSideContentTempl = ServicePolicyTempl;
           vm.$data.sideBarItemName = '售后政策';
         }else if(to.path === '/copyright/agreement') {
-          vm.$data.currSideContentTempl = CopyRightAgreementTempl;
+          vm.$data.currSideContentTempl = CopyRightPrivacyTempl;
           vm.$data.sideBarItemName = '法律声明';
         }else if(to.path === '/copyright/privacy') {
           vm.$data.currSideContentTempl = CopyRightAgreementTempl;

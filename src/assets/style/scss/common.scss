@@ -182,12 +182,17 @@ body {
 		margin: 0 35px;
 		border-top: 1px solid #e3e3e3;
 		.company,
+		.record,
 		.privacy {
 			font-size: $fontSize - 2px;
 			float: left;
 		}
-		.company {
+		.company,
+		.record {
 			color: #757575;
+		}
+		.record {
+			margin-left: 10px;
 		}
 		.privacy {
 			li {

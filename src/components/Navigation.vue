@@ -3,7 +3,7 @@
     <div class="container clearfix">
       <h2 class="nav-series">P R O 1</h2>
       <ul class="nav-list">
-        <li v-for='item in list' :class='{"active": item.link == $route.path}'>
+        <li v-for='(item, index) in list' :key='index' :class='{"active": item.link == $route.path}'>
           <router-link :to='item.link'>{{item.name}}</router-link>
         </li>
       </ul>
@@ -23,24 +23,24 @@ export default {
         },
         {
           name: '设计',
-          link: '/desgin'
+          link: '/design'
         },
-        {
-          name: '科技',
-          link: '/tech'
-        },
-        {
-          name: '参数',
-          link: '/specs'
-        },
+        // {
+        //   name: '科技',
+        //   link: '/tech'
+        // },
+        // {
+        //   name: '参数',
+        //   link: '/specs'
+        // },
         {
           name: '视频',
           link: '/pr/video'
         },
-        {
-          name: '用户评价',
-          link: '/comment'
-        },
+        // {
+        //   name: '用户评价',
+        //   link: '/pr/comment'
+        // },
         {
           name: '壁纸下载',
           link: '/pr/wallpaper'

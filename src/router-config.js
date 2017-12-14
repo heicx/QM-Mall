@@ -5,7 +5,8 @@ import PassportLayout from './components/Passport.vue';
 
 import Signin from './views/passport/Signin.vue';
 import Signup from './views/passport/Signup.vue';
-import Home from './views/Home.vue'
+import Overview from './views/Overview.vue'
+import Design from './views/Design.vue'
 import Video from './views/pr/Video.vue'
 import Comments from './views/pr/Comments.vue'
 import WallPaper from './views/pr/WallPaper.vue'
@@ -23,7 +24,15 @@ let router = new VueRouter({
     routes: [
         {
             path: '/',
-            component: Home
+            redirect: '/overview'
+        },
+        {
+            path: '/overview',
+            component: Overview
+        },
+        {
+            path: '/design',
+            component: Design
         },
         {
             name: 'passport',

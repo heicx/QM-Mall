@@ -1,30 +1,12 @@
 <template>
 	<div class="wallpaper-wrap">
         <div class="wallpaper-head">
-            <button class='download'>壁纸下载</button>
+            <!-- <button class='download'>壁纸下载</button> -->
         </div>
         <div class="wallpaper-content">
             <ul class="img-list">
-                <li>
-                    <img src="http://c1.mifile.cn/f/i/15/scooter/overall-intro-video-poster.jpg" alt="">
-                </li>
-                <li>
-                    <img src="http://c1.mifile.cn/f/i/15/scooter/overall-intro-video-poster.jpg" alt="">
-                </li>
-                <li>
-                    <img src="http://c1.mifile.cn/f/i/15/scooter/overall-intro-video-poster.jpg" alt="">
-                </li>
-                <li>
-                    <img src="http://c1.mifile.cn/f/i/15/scooter/overall-intro-video-poster.jpg" alt="">
-                </li>
-                <li>
-                    <img src="http://c1.mifile.cn/f/i/15/scooter/overall-intro-video-poster.jpg" alt="">
-                </li>
-                <li>
-                    <img src="http://c1.mifile.cn/f/i/15/scooter/overall-intro-video-poster.jpg" alt="">
-                </li>
-                <li>
-                    <img src="http://c1.mifile.cn/f/i/15/scooter/overall-intro-video-poster.jpg" alt="">
+                <li v-for="imgUrl in imgList" :key='imgUrl'>
+                    <img :src="imgUrl" alt="">
                 </li>
             </ul>
         </div>
@@ -33,10 +15,20 @@
 
 <script>
 export default {
+    data() {
+        return {
+            imgList: []
+        }
+    },
     methods: {},
     created() {
+        let count = 16;
+
+        for(let i = 1; i <= 16; ++i) {
+            this.imgList.push(`/src/assets/images/wallpaper/${i}.png`);
+        }
     },
-    mounted() {        
+    mounted() {
     },
     destroyed() {
     }
