@@ -2,16 +2,22 @@
     <div class="overview-wrap">
         <ul class="img-container">
             <li>
-                <img src="/src/assets/images/wallpaper/9.png" alt="">
+                <img src="~images/overview/overview-1.png" alt="">
             </li>
             <li>
-                <img src="/src/assets/images/wallpaper/10.png" alt="">
+                <img src="~images/overview/overview-2.png" alt="">
+            </li>
+            <li class="full">
+                <img src="~images/overview/overview-3.png" alt="">
             </li>
             <li>
-                <img src="/src/assets/images/wallpaper/11.png" alt="">
+                <img src="~images/overview/overview-4.png" alt="">
             </li>
             <li>
-                <img src="/src/assets/images/wallpaper/12.png" alt="">
+                <img src="~images/overview/overview-5.png" alt="">
+            </li>
+            <li class="full">
+                <img src="~images/overview/overview-6.png" alt="">
             </li>
         </ul>
     </div>
@@ -36,10 +42,16 @@ export default {
 }
 
 .img-container {
+    background: #fff;
     li {
-        margin: 60px 100px;
+        // margin: 60px 100px;
         img {
             width: 1220px;
+            margin: 0 auto;
+            display: block;
+        }
+        &.full img {
+            width: 100%;
         }
     }
 }

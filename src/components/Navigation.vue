@@ -21,10 +21,10 @@ export default {
           name: '概览',
           link: '/overview'
         },
-        {
-          name: '设计',
-          link: '/design'
-        },
+        // {
+        //   name: '设计',
+        //   link: '/design'
+        // },
         // {
         //   name: '科技',
         //   link: '/tech'
@@ -33,18 +33,18 @@ export default {
         //   name: '参数',
         //   link: '/specs'
         // },
-        {
-          name: '视频',
-          link: '/pr/video'
-        },
+        // {
+        //   name: '视频',
+        //   link: '/pr/video'
+        // },
         // {
         //   name: '用户评价',
         //   link: '/pr/comment'
         // },
-        {
-          name: '壁纸下载',
-          link: '/pr/wallpaper'
-        }
+        // {
+        //   name: '壁纸下载',
+        //   link: '/pr/wallpaper'
+        // }
       ]
     }
   },
