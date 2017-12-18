@@ -69,7 +69,9 @@
 			</ul>
 			<div class="copyright">
 				<h3 class="company">Copyright © 2017, QM Digital Co., Ltd. All Rights Reserved.  东莞市轻麦电子科技有限公司</h3>
-				<h3 class="record">粤ICP备15108072号-1</h3>
+				<h3 class="record">
+					<a href="http://www.miibeian.gov.cn/" target="_blank">粤ICP备15108072号-1</a>
+				</h3>
 				<ul class="privacy">
 					<li>
 						<router-link to='/copyright/agreement'>法律声明</router-link>
