@@ -1,6 +1,6 @@
 <template>
     <div class="overview-wrap">
-        <ul class="img-container">
+        <!-- <ul class="img-container">
             <li>
                 <img src="~images/overview/overview-1.png" alt="">
             </li>
@@ -19,16 +19,21 @@
             <li class="full">
                 <img src="~images/overview/overview-6.png" alt="">
             </li>
-        </ul>
+        </ul> -->
     </div>
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
     methods: {},
-    components: {
+    computed: {
+        isLogin () {
+            return this.$store.getters.getUserInfo
+        }
     },
-    mounted() {
+    created () {
+        this.$store.dispatch('isLogin');
     },
     destroyed() {
     }

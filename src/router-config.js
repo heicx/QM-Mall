@@ -18,6 +18,7 @@ import Checkout from './views/payment/Checkout.vue'
 import Payment from './views/payment/Payment.vue'
 import NotFound from './views/NotFound.vue'
 
+import Util from './libs/util';
 
 let router = new VueRouter({
     // mode: 'history',
@@ -28,11 +29,17 @@ let router = new VueRouter({
         },
         {
             path: '/overview',
-            component: Overview
+            component: Overview,
+            meta: {
+                title: '概览'
+            }
         },
         {
             path: '/design',
-            component: Design
+            component: Design,
+            meta: {
+                title: '设计'
+            }
         },
         {
             name: 'passport',
@@ -125,6 +132,8 @@ router.beforeEach((to, from, next)=> {
     if(to.name != 'passport') {
         Bus.$emit('changeLayout', true);
     }
+
+    Util.title(to.meta.title);
 
     next();
 });
