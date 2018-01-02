@@ -9,10 +9,10 @@
 				<button class='verification-code' cloumn='4' :class="{'disabled': isSendCaptcha}" @click="sendCaptcha()">获取验证码</button>
 			</div>
 			<div class="input-wrapper">
-				<input type="password" v-model="registerForm.password" placeholder='密码' />
+				<input type="password" v-model="registerForm.password" placeholder='密码' autocomplete='off' />
 			</div>
 			<div class="input-wrapper">
-				<input type="password" v-model="registerForm.rePassword" placeholder='重复密码' />
+				<input type="password" v-model="registerForm.rePassword" placeholder='重复密码' autocomplete='off' />
 			</div>
 		</div>
 		<button class="group-btn" @click="register()">注册</button>
@@ -96,8 +96,7 @@ export default {
 	},
 	components: {
 		Tips
-	},
-	
+	}
 }
 
 

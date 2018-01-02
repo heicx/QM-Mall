@@ -28,12 +28,8 @@ import {mapGetters} from 'vuex'
 export default {
     methods: {},
     computed: {
-        isLogin () {
-            return this.$store.getters.getUserInfo
-        }
     },
     created () {
-        this.$store.dispatch('isLogin');
     },
     destroyed() {
     }

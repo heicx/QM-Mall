@@ -9,7 +9,7 @@ Vue.use(Vuex)
 
 const state = {
     errMsg: null,
-    isLogin: false,
+    isLogin: null,
     user: {}
 };
 

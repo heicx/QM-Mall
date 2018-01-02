@@ -12,7 +12,7 @@ export const login = (state, ret) => {
 // 退出登录
 export const logout = (state, ret) => {
     if(ret && ret.status) {
-        state.isLogin = true;
+        state.isLogin = false;
         state.user = {};
     }
 }

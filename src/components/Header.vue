@@ -2,12 +2,12 @@
 	<div class="header-topbar">
 		<div class="container clearfix">
 			<div class="topbar-logo"></div>
-			<div class="topbar-info" v-if="isLogin">
+			<div class="topbar-info" v-if="isLogin == false">
 				<router-link to='/signin' class='link'>登录</router-link>
 				<span class="sep">|</span>
 				<router-link to='/signup' class='link'>注册</router-link>
 			</div>
-			<div class="topbar-info" v-if="!isLogin">
+			<div class="topbar-info" v-if="isLogin">
 				<div class="nav-user">
 					<router-link to='/signin' class='user-icon'></router-link>
 					<div class="user-wrapper">
@@ -47,11 +47,11 @@ export default {
 	},
     computed: {
         isLogin () {
-            return this.$store.getters.isLogin
-        }
+			return this.$store.getters.isLogin;
+		}
     },
     created () {
-        this.$store.dispatch('isLogin');
+		this.$store.dispatch('isLogin');
     }
 }
 </script>
