@@ -6,15 +6,15 @@
       </div>
       <div class="address-list">
         <ul class="items">
-          <li class='active'>
+          <!-- <li class='active'>
             <div class="name">
               悟空sudo
               <span class="default">（默认地址）</span>
             </div>
             <p class="tel">13910789088</p>
             <p class="address">北京市朝阳区望京绿地中心 A 座 A 区</p>
-          </li>
-          <li class="address-add">
+          </li> -->
+          <li class="address-add" @click="addAddress()">
             + 添加新地址
           </li>
         </ul>
@@ -28,16 +28,16 @@
         <p class="invoice-name">发票类型：电子发票</p>
         <p class="invoice-type">
           发票抬头：
-          <label>
-            <span class='blue-radio'><i></i></span>
+          <label @click="invoiceType = 1">
+            <span class='blue-radio' :class='{"on": invoiceType == 1}'><i></i></span>
             个人
           </label>
-          <label>
-            <span class='blue-radio on'><i></i></span>
+          <label @click="invoiceType = 2">
+            <span class='blue-radio' :class='{"on": invoiceType == 2}'><i></i></span>
             单位
           </label>
         </p>
-        <div class="invoice-text">
+        <div class="invoice-text" v-if="invoiceType == 2">
           <div class="title">
             <input type="text" maxlength='26' placeholder='请填写公司发票抬头'>
           </div>
@@ -92,15 +92,42 @@
         </h2>
       </div>
       <div class="payment">
-        <router-link to='/payment/1234567' tag='button' class='commit-btn'>提交订单</router-link>
+        <a tag='button' class='commit-btn' :class="{'disabled': !isCanBuy}">提交订单</a>
         <span class="total-price">
           应付总额：
           <em>¥ 3299</em>
         </span>
       </div>
     </div>
+    <user-address :isOpen="isOpenDialog" @closeDialogEvent="closeDialog()"></user-address>
   </div>
 </template>
+
+<script>
+  import UserAddress from '../../components/UserAddress.vue';
+
+  export default {
+    data () {
+      return {
+        isCanBuy: false,
+        invoiceType: 1,
+        addressList: [],
+        isOpenDialog: false
+      }
+    },
+    methods: {
+      addAddress () {
+        this.isOpenDialog = true;
+      },
+      closeDialog (status) {
+        this.isOpenDialog = status;
+      }
+    },
+    components: {
+      UserAddress
+    }
+  }
+</script>
 
 <style lang="scss" scoped>
 .payment-wrap {
@@ -384,6 +411,7 @@
     .commit-btn {
       width: 136px;
       height: 46px;
+      line-height: 46px;
       display: block;
       padding: 1px;
       border-radius: 6px;
@@ -395,6 +423,13 @@
       color: #FFF;
       opacity: .85;
       transition: opacity 0.15s ease-out;
+      &.disabled {
+        cursor: not-allowed;
+        opacity: .45;
+        &:hover {
+          opacity: .45;
+        }
+      }
       &:hover {
         opacity: 1;
       }

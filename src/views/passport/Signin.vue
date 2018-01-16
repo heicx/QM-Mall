@@ -16,6 +16,8 @@
 <script>
 import Tips from '../../common/Tips.vue';
 
+let timer = null;
+
 export default {
 	data () {
 		return {

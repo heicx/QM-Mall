@@ -110,11 +110,13 @@ let router = new VueRouter({
             path: '/account/information',
             component: AccountLayout
         },
-        { 
+        {
+            name: 'checkout',
             path: '/checkout/:id',
             component: Checkout
         },
-        { 
+        {
+            name: 'payment',
             path: '/payment/:id',
             component: Payment
         },
@@ -131,6 +133,21 @@ let router = new VueRouter({
 router.beforeEach((to, from, next)=> {
     if(to.name != 'passport') {
         Bus.$emit('changeLayout', true);
+    }
+    
+    console.log(['passport', 'account', 'checkout', 'payment'].indexOf(to.name) )
+    if(to.name && ['passport'].indexOf(to.name) > -1) {
+        if(sessionStorage.getItem('_usr')) {
+            next('/');
+            return;
+        }
+    }
+
+    if(to.name && ['account', 'checkout', 'payment'].indexOf(to.name) > -1) {
+        if(!sessionStorage.getItem('_usr')) {
+            next('/');
+            return;
+        }
     }
 
     Util.title(to.meta.title);

@@ -39,10 +39,13 @@
 
 <script>
 import {mapGetters} from 'vuex'
+
 export default {
     methods: {
 		logout () {
-			this.$store.dispatch('logout');
+			this.$store.dispatch('logout').then(_ => {
+				this.$router.push('/');
+			});
 		}
 	},
     computed: {

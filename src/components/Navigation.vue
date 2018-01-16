@@ -7,7 +7,7 @@
           <router-link :to='item.link'>{{item.name}}</router-link>
         </li>
       </ul>
-      <button class="nav-btn">现在购买</button>
+      <button class="nav-btn" @click="checkout()">现在购买</button>
     </div>
 	</div>
 </template>
@@ -48,8 +48,20 @@ export default {
       ]
     }
   },
-  mounted() {
-    // console.log(this.$route)
+  methods: {
+    checkout () {
+      let goods_info = {};
+      let orderId = 'eo' + (new Date()).getTime();
+      
+      goods_info = {
+        id: orderId,
+        goods_id: '10001001:1',
+        price: 2499
+      }
+
+      sessionStorage.setItem('gs', encodeURIComponent(goods_info));
+      this.$router.push(`/checkout/${orderId}`);
+    }
   }
 }
 </script>
