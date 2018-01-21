@@ -49,3 +49,15 @@ export const areaList = ({commit}, params) => {
         return ret;
     });
 }
+
+export const addressList = ({commit}) => {
+    return API.get('addressList').then(ret => {
+        return ret;
+    });
+}
+
+export const addAddress = ({commit}, params) => {
+    return API.post('addAddress', params).then(ret => {
+        return ret;
+    });
+}

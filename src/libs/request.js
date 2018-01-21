@@ -7,7 +7,7 @@ axios.defaults.baseURL = 'http://api.tcka.cn/mall/';
 axios.defaults.withCredentials = true;
 
 const get = (name, params) => {
-    return axios.get(URI[name], params).then(res => res.data);
+    return axios.get(URI[name], {params: params}).then(res => res.data);
 }
 
 const post = (name, params) => {
