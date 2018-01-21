@@ -3,5 +3,9 @@ export default {
     'register': 'user/register',
     'sendCaptcha': 'user/sendCaptcha',
     'isLogin': 'isLogin',
-    'logout': 'logout'
+    'logout': 'logout',
+    'cityList': 'area/city',
+    'areaList': 'area',
+    'addressList': 'address/list',
+    'addAddress': 'address/save'
 }
