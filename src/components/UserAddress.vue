@@ -21,12 +21,12 @@
                                 </div>
                                 <div class="module-form-row-pc fn-clear">
                                     <div class="form-item-v3">
-                                        <input type="text" placeholder="手机号" v-focus="iptErrName == 'telphone'" v-model="formData.telphone">
+                                        <input type="text" placeholder="手机号" v-focus="iptErrName == 'mobile'" v-model="formData.mobile">
                                     </div>
                                 </div>
                                 <div class="module-form-row-pc fn-clear">
                                     <div class="form-item-v3 area-code fl">
-                                        <input type="text" placeholder="区号（可选）" v-focus="iptErrName == 'areacode'" v-model="formData.areaCode">
+                                        <input type="text" placeholder="区号（可选）" v-focus="iptErrName == 'zipcode'" v-model="formData.zipCode">
                                     </div>
                                     <div class="form-item-v3 telphone fr">
                                         <input type="text" placeholder="固定电话（可选）" v-focus="iptErrName == 'phonenumber'" v-model="formData.phoneNumber">
@@ -35,9 +35,9 @@
                                 <div class="module-form-row-pc fn-clear">
                                     <div class="form-item-v3 province-wrapper">
                                         <div class="select-province-wrapper">
-                                            <select class="select-province" v-model="formData.provinceId">
+                                            <select class="select-province" v-model="formData.provinceId" @change='provinceChange'>
                                                 <option value="-1" selected='selected'>请选择省份</option>
-                                                <option :value="province.id" :key="province.id" v-for="province in provinceList">{{province.name}}</option>
+                                                <option :value="province.id" :name="province.name" :key="province.id" v-for="province in provinceList">{{province.name}}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -45,7 +45,7 @@
                                 <div class="module-form-row-pc fn-clear">
                                     <div class="form-item-v3 city-wrapper fl">
                                         <div class="select-city-wrapper">
-                                            <select class="select-city" v-model="formData.cityId">
+                                            <select class="select-city" v-model="formData.cityId" @change="cityChange">
                                                 <option value="-1">请选择城市</option>
                                                 <option :value="city.id" :key="city.id" v-for="city in cityList">{{city.name}}</option>
                                             </select>
@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="form-item-v3 district-wrapper fr">
                                         <div class="select-district-wrapper">
-                                            <select class="select-district" v-model="formData.districtId">
+                                            <select class="select-district" v-model="formData.districtId" @change="districtChange">
                                                 <option value="-1">请选择区县</option>
                                                 <option :value="district.id" :key="district.id" v-for="district in districtList">{{district.name}}</option>
                                             </select>
@@ -111,12 +111,15 @@ export default {
             default: () => {
                 return {
                     userName: '',
-                    telphone: '',
-                    areaCode: '',
+                    mobile: '',
+                    zipCode: '',
                     phoneNumber: '',
                     provinceId: -1,
                     cityId: -1,
                     districtId: -1,
+                    provinceName: '',
+                    cityName: '',
+                    districtName: '',
                     address: '',
                     isDefault: false
                 }
@@ -124,7 +127,7 @@ export default {
         }
     },
     methods: {
-        closeDialog () {
+        closeDialog () {            
             this.$emit('closeDialogEvent', false);
         },
         changeDefaultRadio () {
@@ -141,29 +144,101 @@ export default {
 				this.isTips = false;
 				cb && cb();
 			}, 2000);
-		},
+        },
+        provinceChange (event) {
+            let provinceId = event.target.value;
+
+            if(provinceId == -1) {
+                this.formData.cityId = -1;
+                this.formData.districtId = -1;
+                this.formData.cityName = '';
+                this.formData.districtName = '';
+
+                this.cityList = [];
+                this.districtList = [];
+            }else {
+                this.$store.dispatch('cityList', {
+                    p: this.formData.provinceId
+                }).then(res => {
+                    if(res.status) {
+                        this.formData.provinceName = this.provinceList.find(province => province.id === this.formData.provinceId)['name'];
+                        this.cityList = res.data;
+                    }else {
+                        this.cityList = [];
+                    }
+
+                    this.formData.cityId = -1;
+                    this.formData.districtId = -1;
+                    this.formData.cityName = '';
+                    this.formData.districtName = '';
+
+                    this.districtList = [];
+                });
+            }
+        },
+        cityChange (event) {
+            let cityId = event.target.value;
+
+            if(cityId == -1) {
+                this.formData.districtId = -1;
+                this.districtList = [];
+            }else {
+                this.$store.dispatch('cityList', {
+                    c: this.formData.cityId
+                }).then(res => {
+                    if(res.status) {
+                        this.formData.cityName = this.cityList.find(city => city.id === this.formData.cityId)['name'];
+                        this.districtList = res.data;
+                    }else {
+                        this.districtList = [];
+                    }
+
+                    this.formData.districtId = -1;
+                });
+            }
+        },
+        districtChange (event) {
+            if(event.target.value != -1) {
+                this.formData.districtName = this.districtList.find(district => district.id === this.formData.districtId)['name'];
+            }
+        },
         saveAddress () {
             if(!this.formData.userName) {
                 this.sendTips('请输入收件人姓名');
                 this.iptErrName = 'username';
-            }else if(!(/^(1[3|4|5|7|8]\d{9})|(166\d{8})|(19[8|9]\d{8})$/.test(this.formData.telphone)) || !this.formData.telphone) {
+            }else if(!(/^(1[3|4|5|7|8]\d{9})|(166\d{8})|(19[8|9]\d{8})$/.test(this.formData.mobile)) || !this.formData.mobile) {
                 this.sendTips('请输入有效手机号码');
-                this.iptErrName = 'telphone';
-            }else if(this.formData.areaCode && !(/^\d{3,4}$/.test(this.formData.areaCode))) {
+                this.iptErrName = 'mobile';
+            }else if(this.formData.zipCode && !(/^\d{3,4}$/.test(this.formData.zipCode))) {
                 this.sendTips('请输入正确的区号');
-                this.iptErrName = 'areacode';
+                this.iptErrName = 'zipcode';
             }else if(this.formData.phoneNumber && !(/^\d+$/.test(this.formData.phoneNumber))) {
                 this.sendTips('请输入正确的固定电话号码');
                 this.iptErrName = 'phonenumber';
-            }else if(this.formData.provinceId === -1) {
+            }else if(this.formData.provinceId == -1) {
                 this.sendTips('请选择所在省份');
-            }else if(this.formData.cityId === -1) {
+            }else if(this.formData.cityId == -1) {
                 this.sendTips('请选择所在城市');
-            }else if(this.formData.districtId === -1) {
+            }else if(this.formData.districtId == -1) {
                 this.sendTips('请选择所在区县');
             }else if(!this.formData.address) {
-                this.sendTips('请选择所在省份');
+                this.sendTips('请输入详情地址，如街道名称，楼层，门牌号码');
                 this.iptErrName = 'address';
+            }else {
+                if(this.formData.isDefault) {
+                    this.formData.isDefault = 1;
+                }else {
+                    this.formData.isDefault = 0;
+                }
+
+                this.$store.dispatch('addAddress', this.formData).then(res => {
+                    if(res.status) {
+                        this.$emit('confirmDialogEvent', res.data);
+                        this.closeDialog();
+                    }else {
+                        this.sendTips(res.errMsg);
+                    }
+                });
             }
         }
     },
@@ -284,6 +359,10 @@ export default {
         }
     }
     .content {
+        input,
+        select {
+            color: rgb(98, 98, 98)
+        }
         .fl {
             float: left!important;
         }
