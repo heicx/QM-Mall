@@ -99,7 +99,7 @@
         </span>
       </div>
     </div>
-    <user-address :isOpen="isOpenDialog" @closeDialogEvent="closeDialog()"></user-address>
+    <user-address :isOpen="isOpenDialog" :formData='adddressData' @closeDialogEvent="closeDialog()"></user-address>
   </div>
 </template>
 
@@ -112,7 +112,18 @@
         isCanBuy: false,
         invoiceType: 1,
         addressList: [],
-        isOpenDialog: false
+        isOpenDialog: false,
+        adddressData: {
+          userName: '',
+          telphone: '',
+          areaCode: '',
+          phoneNumber: '',
+          provinceId: -1,
+          cityId: -1,
+          districtId: -1,
+          address: '',
+          isDefault: false
+        }
       }
     },
     methods: {

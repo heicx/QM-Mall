@@ -1,9 +1,10 @@
 import API from '../libs/request';
+import * as types from './mutation-types';
 
 // 用户登录
 export const login = ({commit}, params) => {
     return API.post('login', params).then(ret => {
-        commit('login', ret);
+        commit(types.MALL_LOGIN, ret);
         return ret;
     })
 }
@@ -18,7 +19,7 @@ export const register = ({commit}, params) => {
 // 退出登录
 export const logout = ({commit}) => {
     return API.get('logout').then(ret => {
-        commit('logout', ret);
+        commit(types.MALL_LOGOUT, ret);
     })
 }
 
@@ -31,10 +32,20 @@ export const sendCaptcha = ({commit}, params) => {
 
 // 校验登录状态
 export const isLogin = ({commit}) => {
-    return API.get('isLogin', {
-        params: {async: true}
-    }).then(data => {
-        commit('login', data);
+    return API.get('isLogin', {async: true}).then(data => {
+        commit(types.MALL_LOGIN, data);
         return data;
     })
+}
+
+export const cityList = ({commit}, params) => {
+    return API.get('cityList', params).then(ret => {
+        return ret;
+    });
+}
+
+export const areaList = ({commit}, params) => {
+    return API.get('areaList', params).then(ret => {
+        return ret;
+    });
 }

@@ -16,27 +16,28 @@
                             <div class="address-form">
                                 <div class="module-form-row-pc fn-clear">
                                     <div class="form-item-v3">
-                                        <input type="text" placeholder="收货人姓名">
+                                        <input type="text" placeholder="收货人姓名" v-focus="iptErrName == 'username'" v-model="formData.userName">
                                     </div>
                                 </div>
                                 <div class="module-form-row-pc fn-clear">
                                     <div class="form-item-v3">
-                                        <input type="text" placeholder="手机号">
+                                        <input type="text" placeholder="手机号" v-focus="iptErrName == 'telphone'" v-model="formData.telphone">
                                     </div>
                                 </div>
                                 <div class="module-form-row-pc fn-clear">
                                     <div class="form-item-v3 area-code fl">
-                                        <input type="text" placeholder="区号（可选）">
+                                        <input type="text" placeholder="区号（可选）" v-focus="iptErrName == 'areacode'" v-model="formData.areaCode">
                                     </div>
                                     <div class="form-item-v3 telphone fr">
-                                        <input type="text" placeholder="固定电话（可选）">
+                                        <input type="text" placeholder="固定电话（可选）" v-focus="iptErrName == 'phonenumber'" v-model="formData.phoneNumber">
                                     </div>
                                 </div>
                                 <div class="module-form-row-pc fn-clear">
                                     <div class="form-item-v3 province-wrapper">
                                         <div class="select-province-wrapper">
-                                            <select class="select-province">
-                                                <option value="0">请选择省份</option>
+                                            <select class="select-province" v-model="formData.provinceId">
+                                                <option value="-1" selected='selected'>请选择省份</option>
+                                                <option :value="province.id" :key="province.id" v-for="province in provinceList">{{province.name}}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -44,33 +45,35 @@
                                 <div class="module-form-row-pc fn-clear">
                                     <div class="form-item-v3 city-wrapper fl">
                                         <div class="select-city-wrapper">
-                                            <select class="select-city">
-                                                <option value="0">请选择城市</option>
+                                            <select class="select-city" v-model="formData.cityId">
+                                                <option value="-1">请选择城市</option>
+                                                <option :value="city.id" :key="city.id" v-for="city in cityList">{{city.name}}</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="form-item-v3 district-wrapper fr">
                                         <div class="select-district-wrapper">
-                                            <select class="select-district">
-                                                <option value="0">请选择区县</option>
+                                            <select class="select-district" v-model="formData.districtId">
+                                                <option value="-1">请选择区县</option>
+                                                <option :value="district.id" :key="district.id" v-for="district in districtList">{{district.name}}</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="module-form-row-pc fn-clear">
                                     <div class="form-item-v3">
-                                        <input type="text" placeholder="详细地址，如街道名称，楼层，门牌号码等">
+                                        <input type="text" placeholder="详细地址，如街道名称，楼层，门牌号码等" v-focus="iptErrName == 'address'" v-model="formData.address">
                                     </div>
                                 </div>
                                 <div class="module-form-row-pc fn-clear">
-                                    <div class="checkbox-section">
-                                        <span class="blue-checkbox"></span>
+                                    <div class="checkbox-section" @click="changeDefaultRadio()">
+                                        <span class="blue-checkbox" :class="{'on': formData.isDefault}"></span>
                                         <span class="checkbox-label">
                                             设为默认地址
                                         </span>
                                     </div>
                                 </div>
-                                <div class="module-form-row-pc btn btn-disabled">
+                                <div class="module-form-row-pc btn" @click="saveAddress()">
                                     <a>保存</a>
                                 </div>
                             </div>
@@ -80,18 +83,123 @@
             </div>
         </div>
         <div class="shadow"></div>
+        <tips :is-toast-tips="isTips" :toast-tips-text="tipsText"></tips>
     </div>
 </template>
 
 <script>
-    export default {
-        props: ['isOpen'],
-        methods: {
-            closeDialog () {
-                this.$emit('closeDialogEvent', false);
+import Tips from '../common/Tips.vue';
+
+let timer = null;
+
+export default {
+    data () {
+        return {
+            isTips: false,
+            tipsText: '',
+            iptErrName: '',
+            provinceList: [],
+            cityList: [],
+            districtList: []
+        }
+    },
+    props: {
+        isOpen: Boolean,
+        
+        formData: {
+            type: Object,
+            default: () => {
+                return {
+                    userName: '',
+                    telphone: '',
+                    areaCode: '',
+                    phoneNumber: '',
+                    provinceId: -1,
+                    cityId: -1,
+                    districtId: -1,
+                    address: '',
+                    isDefault: false
+                }
             }
         }
+    },
+    methods: {
+        closeDialog () {
+            this.$emit('closeDialogEvent', false);
+        },
+        changeDefaultRadio () {
+            this.formData.isDefault = !this.formData.isDefault;
+        },
+        sendTips (msg, cb) {
+			if(timer)
+				clearTimeout(timer);
+
+			this.tipsText = msg;
+			this.isTips = true;
+
+			timer = setTimeout(_ => {
+				this.isTips = false;
+				cb && cb();
+			}, 2000);
+		},
+        saveAddress () {
+            if(!this.formData.userName) {
+                this.sendTips('请输入收件人姓名');
+                this.iptErrName = 'username';
+            }else if(!(/^(1[3|4|5|7|8]\d{9})|(166\d{8})|(19[8|9]\d{8})$/.test(this.formData.telphone)) || !this.formData.telphone) {
+                this.sendTips('请输入有效手机号码');
+                this.iptErrName = 'telphone';
+            }else if(this.formData.areaCode && !(/^\d{3,4}$/.test(this.formData.areaCode))) {
+                this.sendTips('请输入正确的区号');
+                this.iptErrName = 'areacode';
+            }else if(this.formData.phoneNumber && !(/^\d+$/.test(this.formData.phoneNumber))) {
+                this.sendTips('请输入正确的固定电话号码');
+                this.iptErrName = 'phonenumber';
+            }else if(this.formData.provinceId === -1) {
+                this.sendTips('请选择所在省份');
+            }else if(this.formData.cityId === -1) {
+                this.sendTips('请选择所在城市');
+            }else if(this.formData.districtId === -1) {
+                this.sendTips('请选择所在区县');
+            }else if(!this.formData.address) {
+                this.sendTips('请选择所在省份');
+                this.iptErrName = 'address';
+            }
+        }
+    },
+    created () {
+        if(this.formData.provinceId < 0) {
+            this.$store.dispatch('cityList').then(res => {
+                if(res.status) {
+                    this.provinceList = res.data;
+                }
+            });
+        }else {
+            this.$store.dispatch('areaList', {
+                p: this.formData.provinceId,
+                c: this.formData.cityId
+            }).then(res => {
+                if(res.status) {
+                    this.provinceList = res.data.province;
+                    this.cityList = res.data.city;
+                    this.districtList = res.data.district;
+                }
+            });
+        }
+    },
+    directives: {
+        focus: {
+            update: (el, binding) => {
+                if(binding.value) {
+                    el.focus();
+                }
+            }
+        }
+    },
+    components: {
+        Tips
     }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -321,6 +429,9 @@
                         &.on {
                             background: url(~images/checkbox-selected.png) no-repeat;
                             background-size: 1.2rem;
+                            &:before {
+                                content: none;
+                            }
                         }
                     }
                     .checkbox-label {
