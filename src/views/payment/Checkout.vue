@@ -6,14 +6,15 @@
       </div>
       <div class="address-list">
         <ul class="items">
-          <!-- <li class='active'>
+          <li class="address-item" :class="{'active': address.is_default}" v-for="address in addressList" :key="address.id">
             <div class="name">
-              悟空sudo
-              <span class="default">（默认地址）</span>
+              {{address.name}}
+              <span class="default" v-if="address.is_default">（默认地址）</span>
             </div>
-            <p class="tel">13910789088</p>
-            <p class="address">北京市朝阳区望京绿地中心 A 座 A 区</p>
-          </li> -->
+            <p class="tel">{{address.mobile}}</p>
+            <p class="address">{{address.province_name}} {{address.city_name}} {{address.district_name}}</p>
+            <p class="address">{{address.address_name}}</p>
+          </li>
           <li class="address-add" @click="addAddress()">
             + 添加新地址
           </li>
@@ -99,7 +100,7 @@
         </span>
       </div>
     </div>
-    <user-address :isOpen="isOpenDialog" :formData='adddressData' @closeDialogEvent="closeDialog()"></user-address>
+    <user-address :isOpen="isOpenDialog" :formData='adddressData' @closeDialogEvent="closeDialog()" @confirmDialogEvent="confirmUserAddress"></user-address>
   </div>
 </template>
 
@@ -115,7 +116,7 @@
         isOpenDialog: false,
         adddressData: {
           userName: '',
-          telphone: '',
+          mobile: '',
           areaCode: '',
           phoneNumber: '',
           provinceId: -1,
@@ -132,7 +133,21 @@
       },
       closeDialog (status) {
         this.isOpenDialog = status;
+      },
+      confirmUserAddress (address) {
+        if(address && this.addressList.length >= 3) {
+          this.addressList.pop();
+        }
+
+        this.addressList.unshift(address);
       }
+    },
+    created () {
+      this.$store.dispatch('addressList').then(res => {
+          if(res.status) {
+            this.addressList = res.data;
+          }
+      });
     },
     components: {
       UserAddress
@@ -175,10 +190,10 @@
     padding: 30px;
     li {
       float: left;
-      width: 256px;
+      width: 240px;
       height: 138px;
-      margin-right: 16px;
-      padding: 20px;
+      margin-right: 18px;
+      padding: 19px 14px 0 19px;
       border: 1px solid #E5E5E5;
       border-radius: 3px;
       background: #FAFAFA;
@@ -206,16 +221,16 @@
         line-height: 16px;
         font-size: 16px;
         color: #666;
-        margin-top: 18px;
       }
       .tel {
         padding-top: 18px;
       }
       &.address-add {
         font-size: 14px;
-        line-height: 138px;
+        line-height: 118px;
         text-align: center;
         transition: all 0.15s ease-out;
+        margin-right: 0;
         &:hover {
           background: #F2F2F2;
         }
