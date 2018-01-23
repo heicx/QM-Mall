@@ -17,14 +17,14 @@ export default {
   data() {
     return {
       list: [
-        {
-          name: '概览',
-          link: '/overview'
-        },
         // {
-        //   name: '设计',
-        //   link: '/design'
+        //   name: '概览',
+        //   link: '/overview'
         // },
+        {
+          name: '设计',
+          link: '/design'
+        },
         // {
         //   name: '科技',
         //   link: '/tech'
