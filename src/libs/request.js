@@ -3,7 +3,7 @@ import qs from 'qs'
 import URI from './config'
 
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
-axios.defaults.baseURL = 'http://api.tcka.cn/mall/';
+axios.defaults.baseURL = 'http://api.qmy.cx/mall/';
 axios.defaults.withCredentials = true;
 
 const get = (name, params) => {

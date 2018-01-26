@@ -1,7 +1,7 @@
 <template>
 	<div class="header-nav">
     <div class="container clearfix">
-      <h2 class="nav-series">P R O 1</h2>
+      <h2 class="nav-series">SWAN</h2>
       <ul class="nav-list">
         <li v-for='(item, index) in list' :key='index' :class='{"active": item.link == $route.path}'>
           <router-link :to='item.link'>{{item.name}}</router-link>

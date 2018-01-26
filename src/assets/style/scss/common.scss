@@ -23,7 +23,7 @@ body {
 		float: left;
 		background: url(~images/logo.png) no-repeat 50%;
 		background-size: cover;
-		width: 160px;
+		width: 175px;
 		height: 30px;
 		margin-top: 25px;
 	}
@@ -169,7 +169,6 @@ body {
 	.nav-series {
 		float: left;
 		font-size: 24px;
-		margin-left: 35px;
 		cursor: default;
 	}
 	.nav-list {
@@ -184,14 +183,14 @@ body {
 			&:hover {
 				cursor: pointer;
 				a {
-					color: #02bbda;
+					color: #3399ff;
 				}
 				&:after {
 					position: absolute;
 					content: '';
 					width: 100%;
 					height: 2px;
-					background: #02bbda;
+					background: #3399ff;
 					left: 0;
 					bottom: 0;
 				}
@@ -204,7 +203,7 @@ body {
 				content: '';
 				width: 100%;
 				height: 2px;
-				background: #02bbda;
+				background: #3399ff;
 				left: 0;
 				bottom: 0;
 			}
@@ -213,18 +212,17 @@ body {
 	.nav-btn {
 		float: right;
     color: #fff;
-    background: #10afca;
+    background: #3399ff;
     width: 120px;
     height: 40px;
     line-height: 1;
-    border: 1px solid #6299b3;
+    border: 1px solid #3399ff;
     border-radius: 5px;
 		font-size: 14px;
 		margin-top: 15px;
 		transition: all .15s ease-out;
 		&:hover {
-			background: #139fb7;
-			border: 1px solid #4a839e;
+			background: #248CF5;
 		}
 	}
 }
@@ -317,6 +315,18 @@ body {
 				a {
 					color: #02bbda;
 				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1600px) {
+	.header-topbar .container .topbar-info .nav-user .user-wrapper {
+		right: -20px;
+		left: initial;
+		.user-list {
+			&:before {
+				margin-left: 38px;
 			}
 		}
 	}

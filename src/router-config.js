@@ -25,7 +25,7 @@ let router = new VueRouter({
     routes: [
         {
             path: '/',
-            redirect: '/overview'
+            redirect: '/design'
         },
         {
             path: '/overview',

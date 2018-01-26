@@ -20,10 +20,10 @@
             name: '收货地址',
             path: '/account/address'
           },
-          {
-            name: '售后服务',
-            path: '/service/sale'
-          },
+          // {
+          //   name: '售后服务',
+          //   path: '/service/sale'
+          // },
           {
             name: '账户资料',
             path: '/account/information'

@@ -16,6 +16,7 @@
     "postcss-loader": "^2.0.6",
     "qs": "^6.5.1",
     "style-loader": "^0.18.2",
+    "url-loader": "^0.6.2",
     "vue": "^2.3.3",
     "vue-router": "^2.7.0",
     "vuex": "^3.0.1"

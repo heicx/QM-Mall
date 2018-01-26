@@ -52,13 +52,12 @@ body {
 }
 
 .passport-wrap {
-  position: relative;
+  position: absolute;
   width: 100%;
   height: 100%;
   overflow: hidden;
   margin: 0 auto;
   background: #f7fafc;
-  min-height: 850px;
   min-width: 630px;
 }
 
@@ -77,7 +76,7 @@ body {
   .logo {
     position: relative;
     background-image: url(~images/logo.png);
-    background-size: 160px;
+    background-size: 175px;
     background-position: top center;
     background-repeat: no-repeat;
     height: 30px;
@@ -99,11 +98,11 @@ body {
     }
     a.active {
       opacity: 1;
-      color: #02bbda;
+      color: #3399ff;
       &:after {
         content: '';
         position: absolute;
-        border-bottom: 1px solid #02bbda;
+        border-bottom: 1px solid #3399ff;
         bottom: -6px;
         left: 1px;
         width: 100%;
