@@ -97,7 +97,7 @@
       height: 30px;
       border: 0;
       border-radius: 4px;
-      background: #02bbda;
+      background: #3399ff;
       color: #fff;
       font-size: 12px;
       transition: opacity 0.15s ease-out;
@@ -112,14 +112,14 @@
   }
 }
 .address-add {
-  margin: 40px 0 10px;
+  margin: 40px 0 30px;
   text-align: center;
   button {
     width: 180px;
     height: 48px;
     border: 0;
     border-radius: 6px;
-    background: #02bbda;
+    background: #3399ff;
     color: #fff;
     font-size: 14px;
     transition: opacity 0.15s ease-out;

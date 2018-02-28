@@ -1,6 +1,6 @@
 <template>
   <ul class='sidebar-list'>
-    <li v-for='item in supportList'>
+    <li v-for='(item, key) in supportList' :key='key'>
       <router-link :to='item.path' :class='{"active": item.path == currPath}'>{{item.name}}</router-link>
     </li>
   </ul>

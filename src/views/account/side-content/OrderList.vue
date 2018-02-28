@@ -71,7 +71,7 @@
     margin-top: 0;
   }
   .order-groups {
-    padding-bottom: 15px;
+    padding-bottom: 10px;
   }
 
   .order-header {
@@ -124,7 +124,7 @@
       }
       a {
         transition: opacity 0.15s ease-out;
-        color: #02bbda;
+        color: #3399ff;
         opacity: 1;
       }
       a:hover {
@@ -134,12 +134,18 @@
   }
 
   .order-goods {
-    margin-top: 15px;
+    margin-top: 10px;
+    padding-top: 10px;
     padding-left: 26px;
     overflow: hidden;
+    border-top: 1px dashed #e6e6e6;
+    &:nth-child(2) {
+      padding-top: 0;
+      border-top: none;
+    }
     a {
       transition: opacity 0.15s ease-out;
-      color: #02bbda;
+      color: #3399ff;
       opacity: 1;
       cursor: pointer;
     }
@@ -202,7 +208,7 @@
       .canncel-btn {
         width: 70px;
         height: 30px;
-        background: #02bbda;
+        background: #3399ff;
         opacity: 1;
         border: 0;
         color: #fff;
@@ -223,9 +229,10 @@
         position: absolute;
         content: '';
         border-left: 1px solid #DBDBDB;
-        height: 80%;
+        height: 40%;
         left: -26px;
-        top: 10px;
+        top: 50%;
+        transform: translateY(-50%);
       }
     }
     .goods-status {

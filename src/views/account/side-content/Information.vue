@@ -7,7 +7,7 @@
           <span class="name">悟空sudo</span>
         </div>
         <div class="update">
-          <a href="" class="">修改</a>
+          <!-- <a href="" class="">修改</a> -->
         </div>
       </div>
       <div class="group-item clearfix">
@@ -16,7 +16,7 @@
           <span class="name">互联网账号存在被盗风险，建议您定期更改密码以保护账户安全。</span>
         </div>
         <div class="update">
-          <a href="" class="">修改</a>
+          <!-- <a href="" class="">修改</a> -->
         </div>
       </div>
       <div class="group-item clearfix">
@@ -48,6 +48,9 @@
   border-bottom: 1px dashed #EFEFEF;
   &+.group-item {
     padding-top: 15px;
+  }
+  &:last-child {
+    border-bottom: none;
   }
   .item-info {
     width: 50%;
