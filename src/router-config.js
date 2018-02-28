@@ -113,12 +113,14 @@ let router = new VueRouter({
         {
             name: 'checkout',
             path: '/checkout/:id',
-            component: Checkout
+            component: Checkout,
+            props: true
         },
         {
             name: 'payment',
             path: '/payment/:id',
-            component: Payment
+            component: Payment,
+            props: true
         },
         { 
             path: '*',
@@ -134,8 +136,13 @@ router.beforeEach((to, from, next)=> {
     if(to.name != 'passport') {
         Bus.$emit('changeLayout', true);
     }
+
+    if(['checkout', 'payment'].indexOf(to.name) > -1) {
+        Bus.$emit('navHideBtnEvent', true);
+    }else {
+        Bus.$emit('navHideBtnEvent', false);
+    }
     
-    console.log(['passport', 'account', 'checkout', 'payment'].indexOf(to.name) )
     if(to.name && ['passport'].indexOf(to.name) > -1) {
         if(sessionStorage.getItem('_usr')) {
             next('/');
