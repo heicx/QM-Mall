@@ -2,7 +2,7 @@ import axios from 'axios'
 import qs from 'qs'
 import URI from './config'
 
-axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=utf-8';
 axios.defaults.baseURL = 'http://api.qmy.cx/mall/';
 axios.defaults.withCredentials = true;
 
