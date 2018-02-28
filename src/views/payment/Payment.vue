@@ -18,10 +18,11 @@
       <div class="payment-mode-wrap">
         <div class="payment-mode">
           <ul class="payment-list">
-            <li class="wechat">
+            <li class="wechat" @click="wechatPay()">
+              <img v-if="wechatQRShow" :src="wechatQRImg">
             </li>
-            <li class="ali">
-            </li>
+            <!-- <li class="ali">
+            </li> -->
           </ul>
         </div>
       </div>
@@ -31,6 +32,14 @@
 
 <script>
 export default {
+  props: ['id'],
+  data () {
+    return {
+      wechatQRReady: false,
+      wechatQRShow: false,
+      wechatQRImg: 'http://api.qmy.cx/mall/payment/qr'
+    }
+  },
   beforeRouteLeave: (to, from, next) => {
     if(/checkout/.test(to.path)) {
       next(false);
@@ -38,6 +47,34 @@ export default {
       window.location.replace('#' + to.path);
       next();
     }
+  },
+  methods: {
+    wechatPay () {
+      if(this.wechatQRReady) {
+        this.wechatQRShow = !this.wechatQRShow;
+      }
+    }
+  },
+  created () {
+    this.$store.dispatch('checkOrder', {orderId: this.id}).then(res => {
+        if(res.status) {
+          if(res.data.orderStatus === 0 && res.data.payStatus === 0) {
+            this.$store.dispatch('payOrder', {
+              orderId: this.id,
+              orderTitle: res.data.title,
+              totalPrice: res.data.price
+            }).then(res => {
+              if(res.status) {
+                this.wechatQRReady = true;
+              }
+            });
+          }
+        }
+    });
+
+    this.$store.dispatch('checkWechatOrder').then(res => {
+      console.log(res);
+    });
   }
 }
 </script>
@@ -46,7 +83,6 @@ export default {
 .payment-wrap {
   width: 1220px;
   height: 100%;
-  overflow: hidden;
   margin: 0 auto;
   background: #ededed;
   margin-top: 40px;
@@ -93,18 +129,21 @@ export default {
     }
   }
   .payment-mode-wrap {
-    padding-bottom: 60px;
+    padding-bottom: 100px;
   }
   .payment-mode {
     width: 400px;
     margin: 0 auto;
     .payment-list {
-      overflow: hidden;
       padding-top: 35px;
       border-top: 1px solid #EFEFEF;
       opacity: .85;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     li {
+      position: relative;
       width: 144px;
       height: 34px;
       background: #FAFAFA;
@@ -113,7 +152,14 @@ export default {
       padding: 10px 14px;
       cursor: pointer;
       img {
-        width: 100%;
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        top: 56px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 8px;
+        box-shadow: 0px 1px 10px -1px #737070;
       }
       &.wechat {
         float: left;
