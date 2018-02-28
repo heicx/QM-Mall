@@ -7,15 +7,20 @@
           <router-link :to='item.link'>{{item.name}}</router-link>
         </li>
       </ul>
-      <button class="nav-btn" @click="checkout()">现在购买</button>
+      <button v-if="!hideBtn" class="nav-btn" @click="openDialog()">现在购买</button>
+      <item-dialog :isOpen="isOpenDialog" @closeDialogEvent="closeDialog" @goodsItemEvent="checkoutOrder"></item-dialog>
     </div>
 	</div>
 </template>
 
 <script>
+import ItemDialog from '../common/ItemDialog.vue';
+
 export default {
+  props: ['hideBtn'],
   data() {
     return {
+      isOpenDialog: false,
       list: [
         // {
         //   name: '概览',
@@ -49,19 +54,27 @@ export default {
     }
   },
   methods: {
-    checkout () {
-      let goods_info = {};
-      let orderId = 'eo' + (new Date()).getTime();
-      
-      goods_info = {
+    closeDialog (status) {
+      this.isOpenDialog = status;
+    },
+    openDialog () {
+      this.isOpenDialog = true;
+    },
+    checkoutOrder (arrGoods) {
+      let oOrder = {};
+      let orderId = (new Date()).getTime();
+
+      oOrder = {
         id: orderId,
-        goods_id: '10001001:1',
-        price: 2499
+        g: arrGoods
       }
 
-      sessionStorage.setItem('gs', encodeURIComponent(goods_info));
+      sessionStorage.setItem('gs', encodeURIComponent(JSON.stringify(oOrder)));
       this.$router.push(`/checkout/${orderId}`);
     }
+  },
+  components: {
+    ItemDialog
   }
 }
 </script>
