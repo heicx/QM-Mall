@@ -7,5 +7,11 @@ export default {
     'cityList': 'area/city',
     'areaList': 'area',
     'addressList': 'address/list',
-    'addAddress': 'address/save'
+    'addAddress': 'address/save',
+    'checkoutOrder': 'order/checkout',
+    'orderList': 'order/list',
+    'checkOrder': 'order/check',
+    'payOrder': 'payment',
+    'getQRImg': 'payment/qr',
+    'checkWechatOrder': 'payment/search'
 }
