@@ -86,6 +86,10 @@ export default {
 						if(ret.status) {
 							this.isSendCaptcha = true;
 							this.sendTips('请查收短信验证码');
+							
+							timer = setTimeout(() => {
+								this.isSendCaptcha = false;
+							}, 60000);
 						}else {
 							this.sendTips(ret.errMsg);
 						}
