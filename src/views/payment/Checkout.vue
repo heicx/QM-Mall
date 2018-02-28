@@ -6,10 +6,10 @@
       </div>
       <div class="address-list">
         <ul class="items">
-          <li class="address-item" :class="{'active': address.is_default}" v-for="address in addressList" :key="address.id">
+          <li class="address-item" :class="{'active': addressId == address.id}" v-for="address in addressList" :key="address.id" @click="setDeftAddress(address.id)">
             <div class="name">
               {{address.name}}
-              <span class="default" v-if="address.is_default">（默认地址）</span>
+              <span class="default" v-if="addressId == address.id">（默认地址）</span>
             </div>
             <p class="tel">{{address.mobile}}</p>
             <p class="address">{{address.province_name}} {{address.city_name}} {{address.district_name}}</p>
@@ -40,10 +40,10 @@
         </p>
         <div class="invoice-text" v-if="invoiceType == 2">
           <div class="title">
-            <input type="text" maxlength='26' placeholder='请填写公司发票抬头'>
+            <input type="text" maxlength='26' v-model="invoiceTitle" placeholder='请填写公司发票抬头'>
           </div>
           <div class="number">
-            <input type="text" maxlength='24' placeholder='请填写纳税人识别码'>
+            <input type="text" maxlength='24' v-model="invoiceCode" placeholder='请填写纳税人识别码'>
           </div>
         </div>
         <p class="invoice-detail">
@@ -70,50 +70,63 @@
         </span>
       </div>
       <ul class="goods-list">
-        <li>
-          <div class="img">
-            <a href="">
+        <li v-for="(item, index) in goodsList" :key="index">
+          <div class="img" :class="item.color">
+            <!-- <a href="">
               <img src="http://i8.mifile.cn/a1/pms_1505401464.03824312!560x560.jpg">
-            </a>
+            </a> -->
           </div>
-          <span class="title">手机</span>
-          <span class="price">￥ 1999</span>
-          <span class="num">2</span>
-          <span class="sub-total">￥ 3998</span>
+          <span class="title">{{item.title}}</span>
+          <span class="price">￥ {{item.price}}</span>
+          <span class="num">{{item.num}}</span>
+          <span class="sub-total">￥ {{item.num * item.price}}</span>
         </li>
       </ul>
       <div class="summary">
         <h2 class="total">
           商品总计：
-          <span class="price">3299</span>
+          <span class="price">{{totalPrice}}</span>
         </h2>
-        <h2 class="postage">
+        <!-- <h2 class="postage">
           运费：+
           <span class="price">15</span>
-        </h2>
+        </h2> -->
       </div>
       <div class="payment">
-        <a tag='button' class='commit-btn' :class="{'disabled': !isCanBuy}">提交订单</a>
+        <a tag='button' class='commit-btn' :class="{'disabled': !isCanBuy}" @click="orderCheckout()">提交订单</a>
         <span class="total-price">
           应付总额：
-          <em>¥ 3299</em>
+          <em>¥ {{totalPrice}}</em>
         </span>
       </div>
     </div>
-    <user-address :isOpen="isOpenDialog" :formData='adddressData' @closeDialogEvent="closeDialog()" @confirmDialogEvent="confirmUserAddress"></user-address>
+    <user-address :isOpen="isOpenDialog" :formData='adddressData' @closeDialogEvent="closeDialog" @confirmDialogEvent="confirmUserAddress"></user-address>
+    <tips :is-toast-tips="isTips" :toast-tips-text="tipsText"></tips>
   </div>
 </template>
 
 <script>
   import UserAddress from '../../components/UserAddress.vue';
+  import Tips from '../../common/Tips.vue';
+
+  let timer = null;
 
   export default {
+    props: ['id'],
     data () {
       return {
+        orderId: '',
+        goodsList: [],
+        totalPrice: 0,
         isCanBuy: false,
         invoiceType: 1,
+        invoiceTitle: '',
+        invoiceCode: '',
+        addressId: '',
         addressList: [],
         isOpenDialog: false,
+        isTips: false,
+        tipsText: '',
         adddressData: {
           userName: '',
           mobile: '',
@@ -128,6 +141,18 @@
       }
     },
     methods: {
+      sendTips (msg, cb) {
+          if(timer)
+              clearTimeout(timer);
+
+          this.tipsText = msg;
+          this.isTips = true;
+
+          timer = setTimeout(_ => {
+              this.isTips = false;
+              cb && cb();
+          }, 2000);
+      },
       addAddress () {
         this.isOpenDialog = true;
       },
@@ -139,18 +164,100 @@
           this.addressList.pop();
         }
 
+        this.addressId = address.id;
         this.addressList.unshift(address);
+      },
+      setDeftAddress (id) {
+        this.addressList.forEach(oAddress => {
+          if(oAddress.id == id) {
+            this.addressId = id;
+          }
+        });
+      },
+      orderCheckout () {
+        if(this.addressId == '') {
+          this.sendTips('请添加并选择收货地址');
+        }else if(this.invoiceType === 2 && (this.invoiceTitle === '' || !/(^\w{15}$)|(^\w{17}$)|(^\w{18}$)|(^\w{20}$)/i.test(this.invoiceCode))) {
+          this.sendTips('请填写正确的公司发票抬头、纳税人识别码');
+        }else if(this.orderId !== '') {
+          let params = {
+            orderId: this.orderId,
+            addressId: this.addressId,
+            price: this.totalPrice,
+            goodsInfo: JSON.stringify(this.goodsList),
+            invoiceType: this.invoiceType,
+            invoiceTitle: this.invoiceTitle,
+            invoiceCode: this.invoiceCode
+          };
+
+          this.$store.dispatch('checkoutOrder', params).then(res => {
+            if(res.status) {
+              this.sendTips('订单提交成功，请您尽快支付', () => {
+                this.$router.push(`/payment/${res.data.id}`);
+              });
+            }else {
+              let errMsg = res.errMsg || '当前商品下单失败，请重新选择商品'
+              this.sendTips(errMsg, () => {
+                this.$router.push('/');
+              });
+            }
+            // if(res.status) {
+            //     this.$emit('confirmDialogEvent', res.data);
+            //     this.closeDialog();
+            // }else {
+            //     this.sendTips(res.errMsg);
+            // }
+          });
+        }else {
+          this.sendTips('创建订单失败，请重新选择商品进行下单', () => {
+            this.$router.push('/');
+          });
+        }
       }
     },
     created () {
+      let oOrder = window.sessionStorage.getItem('gs') && JSON.parse(decodeURIComponent(window.sessionStorage.getItem('gs')));
+      
       this.$store.dispatch('addressList').then(res => {
           if(res.status) {
-            this.addressList = res.data;
+            if(res.data && Array.isArray(res.data)) {
+              let hasDefault = false;
+
+              this.addressList = res.data;
+
+              for(let oAddress of this.addressList) {
+                if(oAddress['is_default'] == 1) {
+                  this.addressId = oAddress.id;
+                  hasDefault = true;
+                  break;
+                }
+              }
+
+              if(!hasDefault && this.addressList.length > 0) {
+                this.addressId = this.addressList[0].id;
+              }
+            }
           }
       });
+
+      if(oOrder) {
+        this.orderId = oOrder.id;
+        this.goodsList = oOrder.g;
+      }
+
+      if(this.goodsList.length > 0) {
+        this.isCanBuy = true;
+
+        for(let item of this.goodsList) {
+          this.totalPrice += (item.num * item.price);
+        }
+      }else {
+        this.$router.push('/');
+      }
     },
     components: {
-      UserAddress
+      UserAddress,
+      Tips
     }
   }
 </script>
@@ -204,7 +311,7 @@
       color: #626262;
       cursor: pointer;
       &.active {
-        border-color: #6A8FE5;
+        border-color: #3399ff;
         background: #FFF;
       }
       .tel,
@@ -276,8 +383,8 @@
             display: block;
             width: 8px;
             height: 8px;
-            background: #02bbda;
-            border: 1px solid #0f97ad;
+            background: #3399ff;
+            border: 1px solid #3399ff;
             border-radius: 10px;
             box-shadow: 0 1px 2px rgba(0,0,0,.2);
           }
@@ -357,6 +464,18 @@
   .goods-list {
     overflow: hidden;
     padding: 30px;
+    &> li {
+      &:first-child {
+        margin-top: 0;
+      }
+      &:last-child {
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+      padding-bottom: 20px;
+      margin-top: 20px;
+      border-bottom: 1px dashed #e5e5e5;
+    }
     .img,
     .title,
     .price,
@@ -371,10 +490,17 @@
       width: 78px;
       height: 78px;
       border-radius: 4px;
-      img {
-        width: 78px;
-        height: 78px;
-        border-radius: 4px;
+      &.white {
+          background: url(~images/goods-white.png) no-repeat center;
+          background-size: contain;
+      }
+      &.blue {
+          background: url(~images/goods-blue.png) no-repeat center;
+          background-size: contain;
+      }
+      &.grey {
+          background: url(~images/goods-grey.png) no-repeat center;
+          background-size: contain;
       }
     }
     .price,
@@ -442,7 +568,7 @@
       padding: 1px;
       border-radius: 6px;
       border: none;
-      background: #02bbda;
+      background: #3399ff;
       text-align: center;
       text-shadow: rgba(255,255,255,.496094) 0 1px 0;
       cursor: pointer;
