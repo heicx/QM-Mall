@@ -211,13 +211,13 @@ body {
 	}
 	.nav-btn {
 		float: right;
-    color: #fff;
-    background: #3399ff;
-    width: 120px;
-    height: 40px;
-    line-height: 1;
-    border: 1px solid #3399ff;
-    border-radius: 5px;
+		color: #fff;
+		background: #3399ff;
+		width: 120px;
+		height: 40px;
+		line-height: 1;
+		border: 1px solid #3399ff;
+    	border-radius: 5px;
 		font-size: 14px;
 		margin-top: 15px;
 		transition: all .15s ease-out;
@@ -253,7 +253,7 @@ body {
 		h3 {
 			cursor: default;
 			font-size: $fontSize;
-			color: #02bbda;
+			color: #3399ff;
 		}
 		.items {
 			font-size: $fontSize;
@@ -264,7 +264,7 @@ body {
 				cursor: pointer;
 				padding: 6px 0;
 				&:hover {
-					color: #02bbda;
+					color: #3399ff;
 				}
 			}
 		}
@@ -313,7 +313,7 @@ body {
 				margin-left: 10px;
 				padding-left: 10px;
 				a {
-					color: #02bbda;
+					color: #3399ff;
 				}
 			}
 		}
