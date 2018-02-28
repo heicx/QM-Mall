@@ -138,8 +138,8 @@ export default {
     background: #fff;
     .notes {
         position: absolute;
-        width: 304px;
-        right: 180px;
+        width: 325px;
+        right: 170px;
         top: 140px;
         .slogan {
             font-size: 30px;
