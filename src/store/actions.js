@@ -38,26 +38,65 @@ export const isLogin = ({commit}) => {
     })
 }
 
+// 区县列表数据
 export const cityList = ({commit}, params) => {
     return API.get('cityList', params).then(ret => {
         return ret;
     });
 }
 
+// 省市列表
 export const areaList = ({commit}, params) => {
     return API.get('areaList', params).then(ret => {
         return ret;
     });
 }
 
+// 收货地址列表
 export const addressList = ({commit}) => {
     return API.get('addressList').then(ret => {
         return ret;
     });
 }
 
+// 添加收货地址
 export const addAddress = ({commit}, params) => {
     return API.post('addAddress', params).then(ret => {
+        return ret;
+    });
+}
+
+// 商品下单
+export const checkoutOrder = ({commit}, params) => {
+    return API.post('checkoutOrder', params).then(ret => {
+        return ret;
+    });
+}
+
+// 校验订单
+export const checkOrder = ({commit}, params) => {
+    return API.get('checkOrder', params).then(ret => {
+        return ret;
+    });
+}
+
+// 微信下单，生成支付码
+export const payOrder = ({commit}, params) => {
+    return API.post('payOrder', params).then(ret => {
+        return ret;
+    });
+}
+
+// 获取微信支付二维码
+export const getQRImg = ({commit}) => {
+    return API.get('getQRImg').then(ret => {
+        return ret;
+    });
+}
+
+// 微信支付订单查询
+export const checkWechatOrder = ({commit}) => {
+    return API.post('checkWechatOrder').then(ret => {
         return ret;
     });
 }
