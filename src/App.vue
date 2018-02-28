@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="app-wrap">
 		<app-header v-if='isShow'></app-header>
-    <app-navigation v-if='isShow'></app-navigation>
+    <app-navigation v-if='isShow' :hideBtn="navHide"></app-navigation>
     <router-view></router-view>
 		<app-footer v-if='isShow'></app-footer>
 	</div>
@@ -18,11 +18,16 @@ export default {
   data() {
     return {
       isShow: this.$route.name != 'passport',
+      navHide: (this.$route.name == 'checkout' || this.$route.name == 'payment')
     }
   },
   created() {
     Bus.$on('changeLayout', (status)=> {
       this.isShow = status;
+    });
+
+    Bus.$on('navHideBtnEvent', (status)=> {
+      this.navHide = status;
     });
   },
   components: {
