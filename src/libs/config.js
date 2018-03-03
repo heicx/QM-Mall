@@ -13,5 +13,5 @@ export default {
     'checkOrder': 'order/check',
     'payOrder': 'payment',
     'getQRImg': 'payment/qr',
-    'checkWechatOrder': 'payment/search'
+    'checkWechatOrder': 'payment/check'
 }
