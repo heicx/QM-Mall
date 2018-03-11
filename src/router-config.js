@@ -98,7 +98,8 @@ let router = new VueRouter({
         { 
             name: 'account',
             path: '/account/order/:id',
-            component: AccountLayout
+            component: AccountLayout,
+            props: true
         },
         { 
             name: 'account',
@@ -137,7 +138,7 @@ router.beforeEach((to, from, next)=> {
         Bus.$emit('changeLayout', true);
     }
 
-    if(['checkout', 'payment'].indexOf(to.name) > -1) {
+    if(['checkout', 'payment', 'account'].indexOf(to.name) > -1) {
         Bus.$emit('navHideBtnEvent', true);
     }else {
         Bus.$emit('navHideBtnEvent', false);

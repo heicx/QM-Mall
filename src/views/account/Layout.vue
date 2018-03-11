@@ -4,7 +4,7 @@
       <component :is='currSideBarTempl' :currPath='currPath' slot='sidebar-list'></component>
     </side-bar>
     <side-content :sideBarItemName='sideBarItemName'>
-      <component :is='currSideContentTempl' slot='sidebar-content'></component>
+      <component :is='currSideContentTempl' slot='sidebar-content' :order-id='id'></component>
     </side-content>
   </div>
 </template>
@@ -21,6 +21,7 @@ import OrderDetailTempl from './side-content/OrderDetail.vue';
 import InformationTempl from './side-content/Information.vue';
 
 export default {
+    props: ['id'],
     data() {
       return {
         currPath: '',
@@ -44,7 +45,7 @@ export default {
         if(to.path === '/account/order') {
           vm.$data.currSideContentTempl = OrderListTempl;
           vm.$data.sideBarItemName = '我的订单';
-        }else if(to.path.match(/account\/order\/\d+/g)) {
+        }else if(to.path.match(/account\/order\/[a-zA-z\d]+/g)) {
           vm.$data.currSideContentTempl = OrderDetailTempl;
           vm.$data.sideBarItemName = '订单详情';
           vm.$data.currPath = '/account/order';
@@ -68,7 +69,7 @@ export default {
       if(to.path === '/account/order') {
         this.currSideContentTempl = OrderListTempl;
         this.sideBarItemName = '我的订单';
-      }else if(to.path.match(/account\/order\/\d+/g)) {
+      }else if(to.path.match(/account\/order\/[a-zA-z\d]+/g)) {
         this.currSideContentTempl = OrderDetailTempl;
         this.sideBarItemName = '订单详情';
         this.currPath = '/account/order';
