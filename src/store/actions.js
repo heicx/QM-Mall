@@ -66,6 +66,13 @@ export const addAddress = ({commit}, params) => {
     });
 }
 
+// 删除收货地址
+export const delAddress = ({commit}, params) => {
+    return API.post('delAddress', params).then(ret => {
+        return ret;
+    });
+}
+
 // 商品下单
 export const checkoutOrder = ({commit}, params) => {
     return API.post('checkoutOrder', params).then(ret => {
@@ -99,4 +106,25 @@ export const checkWechatOrder = ({commit}) => {
     return API.post('checkWechatOrder').then(ret => {
         return ret;
     });
+}
+
+// 订单列表
+export const getOrderList = ({commit}) => {
+    return API.get('orderList').then(ret => {
+        return ret;
+    });
+}
+
+// 取消订单
+export const cancelOrder = ({commit}, params) => {
+    return API.post('cancelOrder', params).then(ret => {
+        return ret;
+    })
+}
+
+// 用户信息
+export const getUserInfo = ({commit}) => {
+    return API.get('getUserInfo').then(ret => {
+        return ret;
+    })
 }
