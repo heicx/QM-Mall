@@ -142,16 +142,16 @@
     },
     methods: {
       sendTips (msg, cb) {
-          if(timer)
-              clearTimeout(timer);
+        if(timer)
+            clearTimeout(timer);
 
-          this.tipsText = msg;
-          this.isTips = true;
+        this.tipsText = msg;
+        this.isTips = true;
 
-          timer = setTimeout(_ => {
-              this.isTips = false;
-              cb && cb();
-          }, 2000);
+        timer = setTimeout(_ => {
+            this.isTips = false;
+            cb && cb();
+        }, 2000);
       },
       addAddress () {
         this.isOpenDialog = true;
