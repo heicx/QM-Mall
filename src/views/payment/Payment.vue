@@ -31,6 +31,8 @@
 </template>
 
 <script>
+let timer = null;
+
 export default {
   props: ['id'],
   data () {
@@ -52,28 +54,33 @@ export default {
     wechatPay () {
       if(this.wechatQRReady) {
         this.wechatQRShow = !this.wechatQRShow;
+
+        timer = setInterval( _ => {
+          this.$store.dispatch('checkWechatOrder').then(res => {
+            if(res.status) {
+              clearInterval(timer);
+              this.$router.push(`/account/order/${this.id}`);
+            }
+          });
+        }, 2000);
       }
     }
   },
   created () {
     this.$store.dispatch('checkOrder', {orderId: this.id}).then(res => {
-        if(res.status) {
-          if(res.data.orderStatus === 0 && res.data.payStatus === 0) {
-            this.$store.dispatch('payOrder', {
-              orderId: this.id,
-              orderTitle: res.data.title,
-              totalPrice: res.data.price
-            }).then(res => {
-              if(res.status) {
-                this.wechatQRReady = true;
-              }
-            });
-          }
+      if(res.status) {
+        if(res.data['order_status'] === 0 && res.data['pay_status'] === 0) {
+          this.$store.dispatch('payOrder', {
+            orderId: this.id,
+            orderTitle: '轻麦 SWAN 电动平衡车',
+            totalPrice: res.data.price
+          }).then(res => {
+            if(res.status) {
+              this.wechatQRReady = true;
+            }
+          });
         }
-    });
-
-    this.$store.dispatch('checkWechatOrder').then(res => {
-      console.log(res);
+      }
     });
   }
 }
