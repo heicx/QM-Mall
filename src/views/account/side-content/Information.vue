@@ -4,36 +4,55 @@
       <div class="group-item clearfix">
         <div class="item-info">
           <span class="title">账户昵称</span>
-          <span class="name">悟空sudo</span>
+          <span class="name">{{userInfo.mobile}}</span>
         </div>
         <div class="update">
           <!-- <a href="" class="">修改</a> -->
         </div>
       </div>
-      <div class="group-item clearfix">
+      <!-- <div class="group-item clearfix">
         <div class="item-info">
           <span class="title">登录密码</span>
           <span class="name">互联网账号存在被盗风险，建议您定期更改密码以保护账户安全。</span>
         </div>
         <div class="update">
-          <!-- <a href="" class="">修改</a> -->
+          <a href="" class="">修改</a>
         </div>
-      </div>
+      </div> -->
       <div class="group-item clearfix">
         <div class="item-info">
           <span class="title">手机号码</span>
-          <span class="name">您验证的手机：139****9088</span>
+          <span class="name">您验证的手机：{{userInfo.mobile}}</span>
         </div>
       </div>
-      <div class="group-item clearfix">
+      <!-- <div class="group-item clearfix">
         <div class="item-info">
           <span class="title">邮箱验证</span>
           <span class="name">您验证的邮箱：he******do@163.com</span>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  data () {
+    return {
+      userInfo: {}
+    }
+  },
+  created () {
+    this.$store.dispatch('getUserInfo').then(res => {
+      if(res.status) {
+        this.userInfo = res.data;
+      }else {
+        this.$router.push('/');
+      }
+    });
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .information-group {

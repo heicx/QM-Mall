@@ -1,42 +1,85 @@
 <template>
   <div class='side-content'>
     <div class="address-group">
-      <div class="address-header">
+      <div class="address-header" v-if="addressList.length > 0">
         <span class="column-name">姓名</span>
         <span class="column-address">详细地址</span>
         <span class="column-tel">电话</span>
       </div>
       <ul class="address-list">
-        <li class='list-item'>
-          <span class="name">张三</span>
-          <span class="address">北京市朝阳区宏泰东街绿地中心 A 座 A 区</span>
+        <li class='list-item' v-for="address in addressList" :key="address.id">
+          <span class="name">{{address.name}}</span>
+          <span class="address">{{address.province_name}}{{address.city_name}}{{address.district_name}} {{address.address_name}}</span>
           <span class="tel">
-            139****9088
-            <span class="default">(默认地址)</span>
+            {{address.mobile}}
           </span>
           <div class="operation">
-            <button class='edit'>编辑</button>
-            <button class='del'>删除</button>
-          </div>
-        </li>
-        <li class='list-item'>
-          <span class="name">李四</span>
-          <span class="address">北京市东城区东四十条佳汇中心 A 座</span>
-          <span class="tel">
-            186****2360
-          </span>
-          <div class="operation">
-            <button class='edit'>编辑</button>
-            <button class='del'>删除</button>
+            <!-- <button class='edit'>编辑</button> -->
+            <button class='del' @click="delAddress(address.id)">删除</button>
           </div>
         </li>
       </ul>
       <div class="address-add">
-        <button>添加收货地址</button>
+        <button @click="addAddress()">添加收货地址</button>
       </div>
     </div>
+    <user-address :isOpen="isOpenDialog" :formData='adddressData' @closeDialogEvent="closeDialog" @confirmDialogEvent="confirmUserAddress"></user-address>
   </div>
 </template>
+
+<script>
+import UserAddress from '../../../components/UserAddress.vue';
+
+export default {
+  data () {
+    return {
+      isOpenDialog: false,
+      addressList: [],
+      adddressData: {
+        userName: '',
+        mobile: '',
+        areaCode: '',
+        phoneNumber: '',
+        provinceId: -1,
+        cityId: -1,
+        districtId: -1,
+        address: '',
+        isDefault: false
+      }
+    }
+  },
+  methods: {
+    addAddress () {
+      this.isOpenDialog = true;
+    },
+    delAddress (addressId) {
+      this.$store.dispatch('delAddress', {addressId: addressId}).then(res => {
+        if(res.status) {
+          this.addressList = this.addressList.filter(oAddress => {
+            return oAddress.id != res.data;
+          });
+        }
+      });
+    },
+    confirmUserAddress (address) {
+      this.addressList.push(address);
+    },
+    closeDialog (status) {
+      this.isOpenDialog = status;
+    }
+  },
+  created () {
+    this.$store.dispatch('addressList', {count: 12}).then(res => {
+      if(res.status) {
+        this.addressList = res.data;
+      }
+    });
+  },
+  components: {
+    UserAddress
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .side-content {

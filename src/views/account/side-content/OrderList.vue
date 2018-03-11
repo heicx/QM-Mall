@@ -1,67 +1,71 @@
 <template>
   <div class='side-content'>
-    <div class="order-groups">
+    <div class="order-groups" v-for="group in orderGroup" :key="group.id">
       <div class="order-header">
-        <span class='date'>2017-09-11</span>
+        <span class='date'>{{group.create_time}}</span>
         <span class='order-id'>
-          订单号：<a>170911543271119</a>
+          订单号：<a :href="'#/account/order/' + group.id">{{group.id}}</a>
         </span>
         <span class='order-detail'>
-          <router-link to='/account/order/12'>查看详情</router-link>
+          <router-link :to="'order/' + group.id">查看详情</router-link>
         </span>
         <span class='sub-total'>应付总额</span>
         <span class='operation'>商品操作</span>
         <span class='num'>数量</span>
         <span class='price'>单价</span>
       </div>
-      <div class="order-goods">
+      <div class="order-goods" v-for="(item, index) in group.goods_info" :key="index">
         <div class="goods-img">
-          <a href="" target="_blank">
-            <img src="http://c1.mifile.cn/f/i/15/scooter/overall-battery-video-poster.jpg" alt="">
-          </a>
+          <div class="img" :class="item.color"></div>
         </div>
-        <div class="goods-title">九号平衡车 Pro</div>
-        <div class='goods-status'>已完成</div>
-        <div class='goods-total'>¥ 99.00</div>
+        <div class="goods-title">{{item.title}}</div>
+        <div class='goods-status' v-if="group.order_status == -1">已取消</div>
+        <div class='goods-status' v-if="group.pay_status === 0 && group.order_status != -1">待支付</div>
+        <div class='goods-status' v-if="group.pay_status === 1  && group.order_status == 0">已支付</div>
+        <div class='goods-status' v-if="group.pay_status === 1 && group.order_status == 1">已发货</div>
+        <div class='goods-status' v-if="group.pay_status === 1 && group.order_status == 2">已完成</div>
+        <div class='goods-status' v-if="group.pay_status === 2 && group.order_status != -1">已退款</div>
+        <div class='goods-total'>¥ {{item.num * item.price}}</div>
         <div class="goods-operation">
-          <button class='canncel-btn'>取消订单</button>
+          <button class='cancel-btn' v-if="group.order_status === 0 && group.pay_status === 0" @click="canncelOrder(group.id)">取消订单</button>
+          <span class='none' v-else>--</span>
         </div>
-        <div class='goods-num'>1</div>
-        <div class='goods-price'>¥ 99.00</div>
-      </div>
-    </div>
-    <div class="order-groups">
-      <div class="order-header">
-        <span class='date'>2017-09-11</span>
-        <span class='order-id'>
-          订单号：<a>170911543271119</a>
-        </span>
-        <span class='order-detail'>
-          <router-link to='/account/order/13'>查看详情</router-link>
-        </span>
-        <span class='sub-total'>应付总额</span>
-        <span class='operation'>商品操作</span>
-        <span class='num'>数量</span>
-        <span class='price'>单价</span>
-      </div>
-      <div class="order-goods">
-        <div class="goods-img">
-          <a href="" target="_blank">
-            <img src="http://c1.mifile.cn/f/i/15/scooter/overall-battery-video-poster.jpg" alt="">
-          </a>
-        </div>
-        <div class="goods-title">九号平衡车 Pro</div>
-        <div class='goods-status'>已完成</div>
-        <div class='goods-total'>¥ 99.00</div>
-        <div class="goods-operation">
-          <button class='canncel-btn'>取消订单</button>
-        </div>
-        <div class='goods-num'>1</div>
-        <div class='goods-price'>¥ 99.00</div>
+        <div class='goods-num'>{{item.num}}</div>
+        <div class='goods-price'>¥ {{item.price}}</div>
       </div>
     </div>
   </div>
 </template>
+<script>
+  export default {
+    data () {
+      return {
+        orderGroup: []
+      }
+    },
+    methods: {
+      canncelOrder (orderId) {
+        this.$store.dispatch('cancelOrder', {orderId: orderId}).then(res => {
+          if(res.status) {
+            debugger;
+            this.orderGroup.forEach(group => {
+              if(group.id == res.data.orderId) {
+                group['order_status'] = -1;
+              }
+            });
+          }
+        });
+      }
+    },
+    created () {
+      this.$store.dispatch('getOrderList').then(res => {
+        if(res.status) {
+          this.orderGroup = res.data;
+        }
+      });
+    }
+  }
+</script>
 
 <style lang="scss" scoped>
   .side-content-wrap {
@@ -173,10 +177,22 @@
       height: 78px;
       border: 1px solid #EBEBEB;
       border-radius: 3px;
-      img {
+      .img {
         width: 78px;
         height: 78px;
-        border: 0;
+        border-radius: 4px;
+        &.white {
+            background: url(~images/goods-white.png) no-repeat center;
+            background-size: contain;
+        }
+        &.blue {
+            background: url(~images/goods-blue.png) no-repeat center;
+            background-size: contain;
+        }
+        &.grey {
+            background: url(~images/goods-grey.png) no-repeat center;
+            background-size: contain;
+        }
       }
     }
     .goods-title {
@@ -205,7 +221,7 @@
       padding-right: 23px;
       line-height: 25px;
       padding-right: 35px;
-      .canncel-btn {
+      .cancel-btn {
         width: 70px;
         height: 30px;
         background: #3399ff;
@@ -218,6 +234,10 @@
         &:hover {
           opacity: 0.85;
         }
+      }
+      .none {
+        margin-right: -30px;
+        padding-left: 30px;
       }
     }
     .goods-total {

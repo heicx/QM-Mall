@@ -2,9 +2,14 @@
   <div class='side-content'>
     <div class="order-detail">
       <div class="order-status">
-        <h2>订单状态：待付款</h2>
-        <h4>订单号：170915547677742</h4>
-        <h4>您的付款时间还有 <span class='time'>21 小时 41 分钟 9 秒</span>，超时后订单将自动取消。</h4>
+        <h2 v-if="order.pay_status == 0 && order.order_status != -1">订单状态：待付款</h2>
+        <h2 v-if="order.pay_status == 1 && order.order_status == 0">订单状态：待发货</h2>
+        <h2 v-if="order.pay_status == 1 && order.order_status == 1">订单状态：已发货</h2>
+        <h2 v-if="order.pay_status == 1 && order.order_status == 2">订单状态：已完成</h2>
+        <h2 v-if="order.pay_status == 2 && order.order_status == -1">订单状态：已退款</h2>
+        <h2 v-if="order.order_status == -1">订单状态：已取消</h2>
+        <h4>订单号：{{order.id}}</h4>
+        <!-- <h4>您的付款时间还有 <span class='time'>21 小时 41 分钟 9 秒</span>，超时后订单将自动取消。</h4> -->
       </div>
       <div class="order-card order-goods">
         <div class="order-header clearfix">
@@ -16,54 +21,72 @@
           </ul>
         </div>
         <ul class="goods-list">
-          <li>
-            <div class="img">
-              <a href="">
-                <img src="http://i8.mifile.cn/a1/pms_1505401464.03824312!560x560.jpg" alt="">
-              </a>
-            </div>
+          <li v-for="(item, index) in order.goods_info" :key="index">
+            <div class="img" :class="item.color"></div>
             <div class="goods-name">
-              小米 MIX 2
+              {{item.title}}
             </div>
-            <span class="price">3299</span>
-            <span class="num">1</span>
-            <span class="sub-total">3299</span>
+            <span class="price">{{item.price}}</span>
+            <span class="num">{{item.num}}</span>
+            <span class="sub-total">{{item.num * item.price}}</span>
           </li>
         </ul>
         <div class="summary">
           <h2 class="total">
             商品总计：
-            <span class="price">3299</span>
+            <span class="price">{{order.price}}</span>
           </h2>
-          <h2 class="postage">
+          <!-- <h2 class="postage">
             运费：+
             <span class="price">15</span>
-          </h2>
+          </h2> -->
           <div class="sub-total">
             应付总额：
-            <span class='price'>3314</span>
+            <span class='price'>{{order.price}}</span>
           </div>
         </div>
       </div>
       <div class="order-card order-address">
         <h2 class="order-header title">收货信息</h2>
         <ul class="content">
-          <li>姓名：张三</li>
-          <li>联系电话：18001011111</li>
-          <li>详细地址：北京市朝阳区望京宏泰东街绿地中心 A 座 A 区</li>
+          <li>姓名：{{order.user_name}}</li>
+          <li>联系电话：{{order.mobile}}</li>
+          <li>详细地址：{{order.province_name}}{{order.city_name}}{{order.district_name}} {{order.address_name}}</li>
         </ul>
       </div>
       <div class="order-card order-invoice">
         <h2 class="order-header title">发票信息</h2>
         <ul class="content">
           <li>发票类型：电子发票</li>
-          <li>发票抬头：个人</li>
+          <li v-if="order.invoice_type === 1">发票抬头：个人</li>
+          <li v-else>发票抬头：{{order.invoice_title}}</li>
           <li>发票内容：购买商品明细</li>
+          <li v-if="order.invoice_type === 2">纳税人识别码：{{order.invoice_code}}</li>
         </ul>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: ['orderId'],
+  data () {
+    return {
+      order: {}
+    }
+  },
+  created () {
+    this.$store.dispatch('checkOrder', {orderId: this.orderId}).then(res => {
+      if(res.status) {
+        this.order = res.data;
+      }else {
+        this.$router.push('/account/order');
+      }
+    });
+  }
+}
+</script>
 
 <style lang="scss" scoped>
 .order-status {
@@ -117,6 +140,10 @@
       display: table;
       padding: 12px 20px;
       line-height: 1;
+      border-bottom: 1px dashed #e6e6e6;
+      &:last-child {
+        border-bottom: none;
+      }
     }
     .img,
     .goods-name,
@@ -126,10 +153,23 @@
       display: table-cell;
       vertical-align: middle;
     }
-    img {
+    .img {
+      border: 1px solid #EBEBEB;
       width: 78px;
       height: 78px;
-      border: 0;
+      border-radius: 4px;
+      &.white {
+          background: url(~images/goods-white.png) no-repeat center;
+          background-size: contain;
+      }
+      &.blue {
+          background: url(~images/goods-blue.png) no-repeat center;
+          background-size: contain;
+      }
+      &.grey {
+          background: url(~images/goods-grey.png) no-repeat center;
+          background-size: contain;
+      }
     }
     .goods-name {
       padding-left: 30px;
@@ -192,11 +232,6 @@
         }
       }
     }
-  }
-}
-.order-invoice {
-  .content {
-    padding-bottom: 0;
   }
 }
 </style>
