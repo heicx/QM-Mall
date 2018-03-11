@@ -18,7 +18,7 @@ export default {
   data() {
     return {
       isShow: this.$route.name != 'passport',
-      navHide: (this.$route.name == 'checkout' || this.$route.name == 'payment')
+      navHide: (this.$route.name == 'checkout' || this.$route.name == 'payment' || this.$route.name == 'account')
     }
   },
   created() {
