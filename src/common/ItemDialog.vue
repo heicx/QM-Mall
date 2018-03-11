@@ -30,7 +30,7 @@
                     <span class="goods-name">{{item.goodsName}}</span>
                     x
                     <span class="num"> {{item.num}}</span>
-                    <em class="btn-del"></em>
+                    <em class="btn-del" @click="delGoods(item.color)"></em>
                 </li>
             </ul>
         </div>
@@ -106,6 +106,11 @@ export default {
             if(!isExist) {
                 this.cart.push(Object.assign({}, this.goodsData[this.goodsColor], {num: 1}));
             }
+        },
+        delGoods (colorName) {
+            this.cart = this.cart.filter(item => {
+                return item.color !== colorName;
+            });
         },
         checkout () {
             let arrRet = [];
